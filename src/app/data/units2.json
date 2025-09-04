@@ -1,0 +1,1298 @@
+{
+	"frakcje": {
+		"Arox": {
+			"special_rule": "Gorąca Krew: ",
+			"flavor_text": [
+				"Armia Arox może wykonać przerzut Testu Inicjatywy."
+			],
+			"oddziały podstawowe": [
+				{
+					"nazwa": "Liagulanie",
+					"punkty": "9",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "7",
+					"_M": "10",
+					"_WS": "2",
+					"_S": "3",
+					"_T": "2",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Grom Włóczni: liagulanie zawsze atakują również drugim szeregiem",
+						"Wierni: Podczas modlitw otrzymują bonus +1 do LD"
+					]
+				}
+			],
+			"oddziały elitarne": [
+				{
+					"nazwa": "Reptilianie",
+					"punkty": "13",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "6",
+					"_M": "10",
+					"_WS": "3",
+					"_S": "4",
+					"_T": "3",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Żelazna Dyscyplina. Rozkazy wydawane Reptilianom mogą być przerzucone, a 1 oznacza darmowy rozkaz.",
+						"Zwinni. Zawsze mogą wykonać przerzut jednej k6 podczas ruchu lub szarży."
+					]
+				},
+				{
+					"nazwa": "Repsolianie",
+					"punkty": "15",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "6",
+					"_M": "10",
+					"_WS": "4",
+					"_S": "4",
+					"_T": "3",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Bitewna Inspiracja. Bohater dołączony do tego oddziału daje +2 dodatkowe ataki do puli.",
+						"Wola Walki. Jeśli oddział Repsolian zniszczył oddział wroga, może wykonać ruch do 10 cm zamiast do 5 cm."
+					]
+				},
+				{
+					"nazwa": "Uświęceni",
+					"punkty": "16",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "7",
+					"_M": "10",
+					"_WS": "3",
+					"_S": "3",
+					"_T": "2",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Zaciekłość. Podczas Testu Ranienia za każdą 1 można wykonać dodatkowe dwa testy k6 na ranienie. Dodatkowe Testy Ranienia i uzyskane 1 nie generują kolejnych.",
+						"Wierni. Podczas modlitw otrzymują bonus +1 do LD.",
+						"Złoty Pancerz. Każde obrażenie, które zostało zadane temu oddziałowi, może być zniwelowane przez niezwykły pancerz. Wykonaj rzut k6. Wynik 2 lub mniej oznacza, że obrażenie zostało zniwelowane."
+					]
+				}
+			],
+			"oddziały rzadkie": [
+				{
+					"nazwa": "Ropuchoni",
+					"punkty": "16",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "7",
+					"_M": "10",
+					"_WS": "3",
+					"_S": "3",
+					"_T": "4",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Trujące Splunięcie. Po zakończeniu walki Ropuchoni mogą dodatkowo wykonać splunięcia na przeciwnika. Wykonaj test k6 za każdą podstawkę Ropuchona, która styka się z wrogiem. Przeciwnik musi wykonać Test Paniki za każdą uzyskaną przez ciebie 1 i 2."
+					]
+				},
+				{
+					"nazwa": "Trygodrony",
+					"punkty": "20",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "6",
+					"_M": "15",
+					"_WS": "2",
+					"_S": "5",
+					"_T": "4",
+					"_A": "2",
+					"_W": "3",
+					"_zasady_specjalne": [
+						"Nieczułość. Test Paniki wykonywany przez ten oddział jest nieudany tylko po uzyskaniu wyniku 6.",
+						"Kreatura. Oddział nie może wykonywać modlitw.",
+						"Rozszarpanie. Oddział podczas szarży posiada WS 4."
+					]
+				},
+				{
+					"nazwa": "Desauros ze Słonecznym Monolitem",
+					"punkty": "68",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_LD": "4",
+					"_M": "10",
+					"_WS": "3",
+					"_S": "6",
+					"_T": "7",
+					"_A": "7",
+					"_W": "7",
+					"_zasady_specjalne": [
+						"Zawsze zdaje Test Zimnej Krwi oraz Test Paniki.",
+						"Pierwotny Szał. Podczas szarży Desauros musi wykonać test k6, żeby sprawdzić, czy wpadnie w szał. Wynik 2 lub mniej oznacza, że Desauros zyskuje +3 Ataki.",
+						"Słoneczny Monolit. Za każdy stracony punkt W Desaurosa podczas walki wykonaj rzut k6. Wynik 2 lub mniej oznacza, że wybrany oddział lub model pojedynczy w promieniu 20 cm otrzymuje 2 rany."
+					]
+				}
+			],
+			"oddziały unikalne": [
+				{
+					"nazwa": "Złota Straż",
+					"punkty": "19",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "7",
+					"_M": "10",
+					"_WS": "3",
+					"_S": "4",
+					"_T": "4",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Złoty Pancerz. Każde obrażenie, które zostało zadane temu oddziałowi, może być zniwelowane przez niezwykły pancerz. Wykonaj rzut k6. Wynik 2 lub mniej oznacza, że obrażenie zostało zniwelowane.",
+						"Trujące Splunięcie. Po zakończeniu walki Ropuchoni mogą dodatkowo wykonać splunięcia na przeciwnika. Wykonaj test k6 za każdą podstawkę Ropuchona, która styka się z wrogiem. Przeciwnik musi wykonać Test Paniki za każdą uzyskaną przez ciebie 1 i 2."
+					]
+				},
+				{
+					"nazwa": "Forgon",
+					"punkty": "35",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_LD": "6",
+					"_M": "10",
+					"_WS": "2",
+					"_S": "5",
+					"_T": "5",
+					"_A": "5",
+					"_W": "5",
+					"_zasady_specjalne": [
+						"Żywa Katapulta. Raz na cykl Forgon może wykonać splunięcie do niezaangażowanego w walkę wroga na odległość 20 cm. Wykonaj rzut k6. Wynik 3 lub mniej oznacza, że wrogi oddział musi wykonać Test Paniki dla 3 podstawek.",
+						"Zawsze zdaje Test Zimnej Krwi oraz Test Paniki."
+					]
+				}
+			],
+			"bohaterowie": [
+				{
+					"nazwa": "Grupa Dowódcza",
+					"punkty": "15",
+					"typ": "Grupa Dowódcza",
+					"minimal_unit_size": 1,
+    				"maximum_unit_size": 1,
+					"_zasady_specjalne": [
+						"Dołączona do oddziału wspiera go podczas walki 1 atakiem. Jeśli Grupa Dowódcza znajduje się w odległości 5 cm od przyjaznego oddziału, ten oddział może korzystać ze specjalnych zasad:",
+						"• Po deklaracji szarży, oddział zamiast dorzutu do szarży, jaki mu przysługuje, może (nawet pomimo utrudnień) wykonać dorzut 3k6 i wybrać dwa najlepsze wyniki.",
+						"• Oddział ma prawo wykonać specjalny ruch w bok lub do tyłu do 5 cm + k6 zamiast swojego normalnego ruchu lub szarży.",
+						"• Oddział może wykonać przerzut nieudanych Testów Paniki."
+					]
+				},
+				{
+					"nazwa": "Czempion Słońca",
+					"punkty": "11",
+					"typ": "Czempion",
+					"minimal_unit_size": 1,
+    				"maximum_unit_size": 1,
+					"_zasady_specjalne": [
+						"Jeśli styka się z przyjaznym oddziałem w walce: wrogi oddział musi przerzucić wszystkie 1 podczas Testu Walki Standardowej i Testu Ranienia w tym cyklu."
+					]
+				},
+				{
+					"nazwa": "Czempion Natury",
+					"punkty": "10",
+					"typ": "Czempion",
+					"minimal_unit_size": 1,
+    				"maximum_unit_size": 1,
+					"_zasady_specjalne": [
+						"Aktywując oddział w promieniu 10 cm: oddział może się dowolnie obrócić i dodać +3 cm do ruchu lub szarży."
+					]
+				},
+				{
+					"nazwa": "Czempion Bogów",
+					"punkty": "14",
+					"typ": "Czempion",
+					"minimal_unit_size": 1,
+    				"maximum_unit_size": 1,
+					"_zasady_specjalne": [
+						"Jeśli styka się z przyjaznym oddziałem w walce, przed walką: oddział przerzuca wszystkie nieudane Testy WS i Ranienia do końca cyklu. oddział ma prawo przerzucić wszystkie nieudane rzuty podczas Testu WS lub Testu Ranienia."
+					]
+				},
+				{
+					"nazwa": "Mistyk Odrodzonych",
+					"punkty": "14",
+					"typ": "Mag",
+					"minimal_unit_size": 1,
+    				"maximum_unit_size": 1,
+					"max_spell_value": 6,
+					"max_number_spells": 2,
+					"max_number_items": 2,
+					"max_items_value": 6,
+					"_zasady_specjalne": [
+						"Może korzystać z czarów i przedmiotów do 6 punktów.",
+						"Przyjazne oddziały w promieniu 10 cm mają szarżę M + 6 cm + k6 (zamiast M + 2k6)."
+					]
+				},
+				{
+					"nazwa": "Słoneczny Prorok",
+					"punkty": "14",
+					"typ": "Mag",
+					"minimal_unit_size": 1,
+    				"maximum_unit_size": 1,
+					"max_spell_value": 100,
+					"max_number_spells": 2,
+					"max_number_items": 2,
+					"max_items_value": 50,
+					"_zasady_specjalne": [
+						"Może korzystać z czarów i przedmiotów."
+					]
+				},
+				{
+					"nazwa": "Sox’Augatir / Wiodący w Boju",
+					"punkty": "30",
+					"typ": "Generał",
+					"minimal_unit_size": 1,
+    				"maximum_unit_size": 1,
+					"_LD": "3",
+					"_zasady_specjalne": [
+						"Dopóki Generał jest na polu bitwy, armia może wykorzystywać zasadę specjalną armii."
+					]
+				}
+			]
+		},
+		"Sorgax": {
+			"special_rule": "Zwiastujący Udrękę: Generał Sorgax otrzymuje możliwość wydania jednego dodatkowego darmowego rozkazu w cyklu, jeśli przeciwnik poniósł podczas bitwy określone straty. Sprawdź, ile przeciwnik stracił dotychczas Punktów Krwi i porównaj z tabelą, by dowiedzieć się, jaki musisz uzyskać wynik, aby rozkaz był udany.",
+			"flavor_text": [
+				"od 6 PK - rozkaz na 1",
+				"od 12 PK - rozkaz na 2 lub mniej",
+				"od 24 PK - rozkaz na 3 lub mniej"
+			],
+			"oddziały podstawowe": [
+				{
+					"nazwa": "Dręczyciele (Reptilianie)",
+					"punkty": "13",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "6",
+					"_M": "10",
+					"_WS": "3",
+					"_S": "4",
+					"_T": "3",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Żelazna Dyscyplina. Rozkazy wydawane Reptilianom mogą być przerzucone, a 1 oznacza darmowy rozkaz.",
+						"Wyczuleni. Mogą otrzymywać rozkazy będąc w odległości do 40 cm od Generała."
+					]
+				}
+			],
+			"oddziały elitarne": [
+				{
+					"nazwa": "Zmory (Liagulianie)",
+					"punkty": "9",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "7",
+					"_M": "10",
+					"_WS": "2",
+					"_S": "3",
+					"_T": "2",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Grom Włóczni. Liagulianie zawsze atakują również drugim szeregiem.",
+						"Podstępni. Otrzymują dodatkowy bonus +2 za atakowanie wroga od boku lub tyłu."
+					]
+				},
+				{
+					"nazwa": "Repsolianie",
+					"punkty": "15",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "6",
+					"_M": "10",
+					"_WS": "4",
+					"_S": "4",
+					"_T": "3",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Bitewna Inspiracja. Bohater dołączony do tego oddziału daje +2 dodatkowe ataki do puli.",
+						"Wola Walki. Jeśli oddział Repsolian zniszczył oddział wroga, może wykonać ruch do 10 cm zamiast do 5 cm."
+					]
+				}
+			],
+			"oddziały rzadkie": [
+				{
+					"nazwa": "Upadli (Ropuchoni)",
+					"punkty": "16",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "7",
+					"_M": "10",
+					"_WS": "3",
+					"_S": "3",
+					"_T": "4",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Trujące Splunięcie. Po zakończeniu walki Ropuchoni mogą dodatkowo wykonać splunięcia na przeciwnika. Wykonaj test k6 za każdą podstawkę Ropuchona, która styka się z wrogiem. Przeciwnik musi wykonać Test Paniki za każdą uzyskaną przez ciebie 1 i 2.",
+						"Nieustraszony. Zawsze zdaje Test Zimnej Krwi i Paniki."
+					]
+				},
+				{
+					"nazwa": "Cierpiętnicy z Voro-dan",
+					"punkty": "20",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "6",
+					"_M": "10",
+					"_WS": "3",
+					"_S": "4",
+					"_T": "5",
+					"_A": "3",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Czujni. Przeciwnik nie otrzymuje bonusów za atak od boku lub tyłu.",
+						"Zniewoleni. Przeciwnik zdobywa Punkty Krwi za podstawki dopiero po zniszczeniu całego oddziału."
+					]
+				},
+				{
+					"nazwa": "Slagory",
+					"punkty": "15",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "6",
+					"_M": "15",
+					"_WS": "3",
+					"_S": "3",
+					"_T": "5",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Nieustraszony. Zawsze zdaje Test Zimnej Krwi i Paniki.",
+						"Gadzi Ruch. Slagory mogą wykonać ruch lub szarżę przez jednostki wroga lub swoje, jeśli ich ruch zakończy się poza oddziałem, przez który przechodziły.",
+						"Kreatura. Oddział nie może wykonywać modlitw."
+					]
+				}
+			],
+			"oddziały unikalne": [
+				{
+					"nazwa": "Desauros z Grobowym Ołtarzem",
+					"punkty": "68",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_LD": "4",
+					"_M": "10",
+					"_WS": "3",
+					"_S": "6",
+					"_T": "7",
+					"_A": "7",
+					"_W": "7",
+					"_zasady_specjalne": [
+						"Nieustraszony. Zawsze zdaje Test Zimnej Krwi i paniki.",
+						"Pierwotny Szał. Podczas szarży Desauros musi wykonać test k6, żeby sprawdzić, czy wpadnie w szał. Wynik 2 lub mniej oznacza, że Desauros zyskuje +3 Ataki.",
+						"Grobowy Ołtarz. Za każdą ranę zadaną przeciwnikowi w wyniku ataku Desaurosa z Gobowym Ołtarzem, Desauros zyskuje 1 punkt W. Desauros może posiadać max. 12 punktów W."
+					]
+				},
+				{
+					"nazwa": "Miażdżyciele na Skalivarach",
+					"punkty": "23",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "6",
+					"_M": "15",
+					"_WS": "4",
+					"_S": "4",
+					"_T": "4",
+					"_A": "2",
+					"_W": "3",
+					"_zasady_specjalne": [
+						"Bitewna Inspiracja. Bohater dołączony do tego oddziału daje +2 dodatkowe ataki do puli.",
+						"Uderzenie Młota. Podczas Testu Ranienia za każdą 1 i 2 można wykonać dodatkowy rzut k6 na ranienie. Uzyskane wyniki nie generują kolejnych."
+					]
+				},
+				{
+					"nazwa": "Forgon",
+					"punkty": "35",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_LD": "6",
+					"_M": "10",
+					"_WS": "2",
+					"_S": "5",
+					"_T": "5",
+					"_A": "5",
+					"_W": "5",
+					"_zasady_specjalne": [
+						"Żywa Katapulta. Raz na cykl Forgon może wykonać splunięcie do niezaangażowanego w walkę wroga na odległość 20 cm. Wykonaj rzut k6. Wynik 3 lub mniej oznacza, że wrogi oddział musi wykonać Test Paniki dla 3 podstawek.",
+						"Nieustraszony. Zawsze zdaje Test Zimnej Krwi oraz paniki."
+					]
+				}
+			],
+			"bohaterowie": [
+				{
+					"nazwa": "Grupa Dowódcza",
+					"punkty": "15",
+					"typ": "Grupa Dowódcza",
+					"minimal_unit_size": 1,
+    				"maximum_unit_size": 1,
+					"_zasady_specjalne": [
+						"Dołączona do oddziału wspiera go podczas walki 1 atakiem. Jeśli Grupa Dowódcza znajduje się w odległości 5 cm od przyjaznego oddziału, ten oddział może korzystać ze specjalnych zasad:",
+						"• Po deklaracji szarży, oddział zamiast dorzutu do szarży, jaki mu przysługuje, może (nawet pomimo utrudnień) wykonać dorzut 3k6 i wybrać dwa najlepsze wyniki.",
+						"• Oddział ma prawo wykonać specjalny ruch w bok lub do tyłu do 5 cm + k6 zamiast swojego normalnego ruchu lub szarży.",
+						"• Oddział może wykonać przerzut nieudanych Testów Paniki."
+					]
+				},
+				{
+					"nazwa": "Czempion Słońca",
+					"punkty": "11",
+					"typ": "Czempion",
+					"minimal_unit_size": 1,
+    				"maximum_unit_size": 1,
+					"_zasady_specjalne": [
+						"Jeśli styka się z przyjaznym oddziałem w walce: wrogi oddział musi przerzucić wszystkie 1 podczas Testu Walki Standardowej i Testu Ranienia w tym cyklu."
+					]
+				},
+				{
+					"nazwa": "Czempion Natury",
+					"punkty": "10",
+					"typ": "Czempion",
+					"minimal_unit_size": 1,
+    				"maximum_unit_size": 1,
+					"_zasady_specjalne": [
+						"Aktywując oddział w promieniu 10 cm: oddział może się dowolnie obrócić i dodać +3 cm do ruchu lub szarży."
+					]
+				},
+				{
+					"nazwa": "Czempion Bogów",
+					"punkty": "14",
+					"typ": "Czempion",
+					"minimal_unit_size": 1,
+    				"maximum_unit_size": 1,
+					"_zasady_specjalne": [
+						"Jeśli styka się z przyjaznym oddziałem w walce: oddział przerzuca wszystkie nieudane Testy WS i Ranienia do końca cyklu."
+					]
+				},
+				{
+					"nazwa": "Mistyk Odrodzonych",
+					"punkty": "14",
+					"typ": "Mag",
+					"minimal_unit_size": 1,
+    				"maximum_unit_size": 1,
+					"max_spell_value": 6,
+					"max_number_spells": 2,
+					"max_number_items": 2,
+					"max_items_value": 6,
+					"_zasady_specjalne": [
+						"Może korzystać z czarów i przedmiotów do 6 punktów.",
+						"Przyjazne oddziały w promieniu 10 cm mają szarżę M + 6 cm + k6 (zamiast M + 2k6)."
+					]
+				},
+				{
+					"nazwa": "Słoneczny Prorok",
+					"punkty": "14",
+					"typ": "Mag",
+					"minimal_unit_size": 1,
+    				"maximum_unit_size": 1,
+					"max_spell_value": 100,
+					"max_number_spells": 2,
+					"max_number_items": 2,
+					"max_items_value": 50,
+					"_zasady_specjalne": [
+						"Może korzystać z czarów i przedmiotów."
+					]
+				},
+				{
+					"nazwa": "Sox’Augatir / Wiodący w Boju",
+					"punkty": "30",
+					"typ": "Generał",
+					"minimal_unit_size": 1,
+    				"maximum_unit_size": 1,
+					"_LD": "3",
+					"_zasady_specjalne": [
+						"Dopóki Generał jest na polu bitwy, armia może wykorzystywać zasadę specjalną armii."
+					]
+				}
+			]
+		},
+		"Gaeldor": {
+			"special_rule": "Gniew Kniei: Oddziały Podstawowe i Elitarne w armii Gaeldor mogą zamienić każdą uzyskaną 1 podczas rzutu za ruch lub szarżę na wynik 4.",
+			"flavor_text": [
+				"Oddziały Podstawowe: min. 2 oddziały w armii 1000 pkt. lub mniejszej, min. 4 oddziały w armii powyżej 1000 pkt.",
+				"Oddziały Elitarne: min. 2 oddziały w armii, max. 1 oddział na każdy 1 Oddział Podstawowy",
+				"Oddziały Rzadkie: max. 4 oddziały w armii 1500 pkt. lub mniejszej, max. 8 oddziałów w armii powyżej 1500 pkt.",
+				"Oddziały Unikalne: max. 3 oddziały w armii 1500 pkt. lub mniejszej, max. 6 oddziałów w armii powyżej 1500 pkt."
+			],
+			"oddziały podstawowe": [
+				{
+					"nazwa": "Tropiciele Bestii (Barbarzyńcy)",
+					"punkty": "13",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "7",
+					"_M": "10",
+					"_WS": "3",
+					"_S": "3",
+					"_T": "3",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Impet: Oddział podczas szarży posiada cechę A większą o 1.",
+						"Instynkt Łowcy: Podczas walki z modelami pojedynczymi lub oddziałami z zasadą Kreatura nie odejmują kostek wynikających z różnicy między Siłą a Twardością."
+					]
+				}
+			],
+			"oddziały elitarne": [
+				{
+					"nazwa": "Vorakowie",
+					"punkty": "12",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "6",
+					"_M": "10",
+					"_WS": "3",
+					"_S": "3",
+					"_T": "3",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Zamaszyste Cięcie: Oddział może wykonać przerzut każdej 6 podczas Testu Walki Standardowej.",
+						"Brutalna Pułapka: Vorakowie podwajają bonus za atakowanie wroga od boku lub tyłu."
+					]
+				}
+			],
+			"oddziały rzadkie": [
+				{
+					"nazwa": "Żelazne Dęby (Pół-giganci)",
+					"punkty": "22",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "7",
+					"_M": "10",
+					"_WS": "2",
+					"_S": "4",
+					"_T": "4",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Miażdżący Cios: Podczas szarży każdy udany rzut w Teście WS wykonany przez ten oddział jest traktowany jak Podwójny Cios."
+					]
+				},
+				{
+					"nazwa": "Leśne Wije (Slagory)",
+					"punkty": "15",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "6",
+					"_M": "15",
+					"_WS": "3",
+					"_S": "3",
+					"_T": "5",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Nieustraszony: Zawsze zdaje Test Zimnej Krwi oraz Paniki.",
+						"Gadzi Ruch: Leśne Wije mogą wykonać ruch lub szarżę przez jednostki wroga lub swoje, jeśli ich ruch zakończy się poza oddziałem, przez który przechodziły.",
+						"Kreatura. Oddział nie może wykonywać modlitw."
+					]
+				},
+				{
+					"nazwa": "Odunowie",
+					"punkty": "18",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "6",
+					"_M": "10",
+					"_WS": "3",
+					"_S": "4",
+					"_T": "5",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Grom Włóczni: Odunowie zawsze atakują również drugim szeregiem.",
+						"Zdrewnienie: Za każdą ranę zadaną temu oddziałowi można wykonać rzut na obronę. Wykonaj rzut k6. Każda 1 oznacza anulowaną ranę."
+					]
+				},
+				{
+					"nazwa": "Amazonki na Pająkach",
+					"punkty": "19",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "7",
+					"_M": "15",
+					"_WS": "3",
+					"_S": "3",
+					"_T": "4",
+					"_A": "2",
+					"_W": "3",
+					"_zasady_specjalne": [
+						"Trucizna: Jeśli podczas walki wrogi oddział otrzymał ranę, podstawka z raną lub ranami jest zdejmowana. Zasada nie działa na modele pojedyncze.",
+						"Wyostrzone Zmysły: Oddział może wykonać dowolny obrót przed wykonaniem ruchu lub szarży."
+					],
+					"_limit": "max. 3 oddziały w armii 1500 pkt. lub mniejszej, max. 5 oddziałów w armii powyżej 1500 pkt."
+				},
+				{
+					"nazwa": "Trefloq",
+					"punkty": "56",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_LD": "6",
+					"_M": "10",
+					"_WS": "2",
+					"_S": "6",
+					"_T": "8",
+					"_A": "5",
+					"_W": "7",
+					"_zasady_specjalne": [
+						"Toksyczne Zarodniki: Podczas atakowania Trefloqa wrogi oddział ma zawsze -1 do S.",
+						"Nieustraszony: Zawsze zdaje Test Zimnej Krwi i Paniki.",
+						"Zdrewnienie: Za każdą ranę zadaną Trefloqowi można wykonać rzut na obronę. Wykonaj rzut k6. Każda 1 oznacza anulowaną ranę."
+					]
+				}
+			],
+			"oddziały unikalne": [
+				{
+					"nazwa": "Dzika Zwierzyna",
+					"punkty": "18",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "5",
+					"_M": "15",
+					"_WS": "3",
+					"_S": "4",
+					"_T": "4",
+					"_A": "2",
+					"_W": "3",
+					"_zasady_specjalne": [
+						"Pod wpływem czaru: Oddział może być wystawiony tylko jeśli w armii jest Mistrz Bestii. Jeśli armia straci ostatniego Mistrza Bestii, przed aktywacją Dzikiej Zwierzyny należy wykonać rzut k6. Wynik 5 lub 6 oznacza, że oddział traci Kość Akcji. Inny wynik oznacza, że może być normalnie aktywowany.",
+						"Szał: Podczas szarży oddział podwaja wartość swojej cechy Atak (A).",
+						"Kreatura: Oddział nie może wykonywać modlitw."
+					]
+				},
+				{
+					"nazwa": "Marmydon",
+					"punkty": "248",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_LD": "4",
+					"_M": "10",
+					"_WS": "3",
+					"_S": "12",
+					"_T": "9",
+					"_A": "6",
+					"_W": "24",
+					"_zasady_specjalne": [
+						"Ryk: Raz w swojej turze Marmydon może wykonać rzut k6. Wynik 2 lub mniej oznacza, że każda wroga jednostka w promieniu 20 cm musi wykonać Test Paniki (4+) dla dwóch podstawek.",
+						"Miażdżący Cios: Podczas szarży każdy udany rzut w Teście WS wykonany przez ten oddział jest traktowany jak Podwójny Cios.",
+						"Gruba Skóra: Za każdą ranę zadaną temu modelowi można wykonać rzut na obronę Grubą Skórą. Wykonaj rzut k6. Każda 1 oznacza anulowaną ranę.",
+						"Nieustraszony: Zawsze zdaje Test Zimnej Krwi i Paniki.",
+						"Upadek molocha: Jeśli Marmydon straci ostatni punkt W, każdy oddział lub model pojedynczy, który dotyka jego podstawki, musi wykonać rzut 2k6. Wynik niższy niż LD oznacza, że otrzymuje k6+2 rany bez możliwości rzutu za pancerz lub obronę.",
+						"Monstrum: Wróg wykonuje Test Paniki na 2+ zamiast na 4+."
+					],
+					"_limit": "max. 1 model w armii na każde pełne 1000 pkt."
+				},
+				{
+					"nazwa": "Leśny Smok",
+					"punkty": "96",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_LD": "4",
+					"_M": "15",
+					"_WS": "4",
+					"_S": "7",
+					"_T": "6",
+					"_A": "8",
+					"_W": "8",
+					"_zasady_specjalne": [
+						"Król Dziczy: Każda wroga jednostka w 15 cm od Leśnego Smoka traci zasadę Hordy, jeśli ją posiada. Każda przyjazna jednostka Gaeldor w 15 cm posiada zasadę Nieustraszony.",
+						"Nieustraszony: Zawsze zdaje Test Zimnej Krwi i Paniki.",
+						"Skrzydlate Stworzenie: Po rozstawieniu armii Leśny Smok może być wystawiony do 20 cm od swojej strefy rozstawienia."
+					]
+				}
+			],
+			"bohaterowie": [
+				{
+					"nazwa": "Grupa Dowódcza",
+					"punkty": "15",
+					"typ": "Grupa Dowódcza",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_zasady_specjalne": [
+						"Patrz dział Bohaterowie – Grupa Dowódcza."
+					]
+				},
+				{
+					"nazwa": "Czempion Kniei",
+					"punkty": "12",
+					"typ": "Czempion",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_zasady_specjalne": [
+						"Jeśli Czempion Kniei styka się z przyjaznym oddziałem zaangażowanym w walkę z wrogim oddziałem, wykonaj test przed walką. oddział otrzymuje +1 do S w tym cyklu. Czempion Kniei pozwala wykonać przerzut podczas rzutu za teren."
+					]
+				},
+				{
+					"nazwa": "Czempion Bestii",
+					"punkty": "13",
+					"typ": "Czempion",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_zasady_specjalne": [
+						"Jeśli Generał miał nieudany rzut wydając rozkaz oddziałowi Odunów, Amazonkom na Pająkach, Leśnym Wijom lub Dzikiej Zwierzynie. Generał może przerzucić nieudany wynik. Czempion Bestii dołączony do wymienionych oddziałów dodaje 2 kolejne ataki do puli."
+					]
+				},
+				{
+					"nazwa": "Czempion Łowów",
+					"punkty": "15",
+					"typ": "Czempion",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_zasady_specjalne": [
+						"Jeśli Czempion Łowów styka się z przyjaznym oddziałem zaangażowanym w walkę z wrogim oddziałem, może wykonać test za każdym razem, gdy przyjazny oddział wykonuje ataki. każda 6 uznawana jest za udane trafienie."
+					]
+				},
+				{
+					"nazwa": "Druid",
+					"punkty": "14",
+					"typ": "Mag",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"max_spell_value": 6,
+					"max_number_spells": 2,
+					"max_number_items": 2,
+					"max_items_value": 6,
+					"_zasady_specjalne": [
+						"Może korzystać z czarów i przedmiotów do 6 punktów.",
+						"Każdy przyjazny oddział Odunów oraz Trefloq mogą wykonać w 20 cm od Druida przerzut nieudanych wyników podczas rzutu na obronę (Zdrewnienie)."
+					]
+				},
+				{
+					"nazwa": "Mistrz Bestii",
+					"punkty": "14",
+					"typ": "Mag",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"max_spell_value": 100,
+					"max_number_spells": 2,
+					"max_number_items": 2,
+					"max_items_value": 50,
+					"_zasady_specjalne": [
+						"Może korzystać z czarów i przedmiotów."
+					]
+				},
+				{
+					"nazwa": "Gaeldaukar",
+					"punkty": "30",
+					"typ": "Generał",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_LD": "2",
+					"_zasady_specjalne": [
+						"Dopóki Generał jest na polu bitwy, armia może wykorzystywać zasadę specjalną armii.",
+						"Więcej zasad – patrz dział Bohaterowie – Generał."
+					]
+				}
+			]
+		},
+		"Vaendral": {
+			"special_rule": "Urodzeni Wojownicy: ",
+			"flavor_text": [
+				"Armia Vaendral może wykonać przerzut wyniku 1 lub 6 podczas Rzutu za Aktywację."
+			],
+			"oddziały podstawowe": [
+				{
+					"nazwa": "Kapłanki Krwi (Amazonki)",
+					"punkty": "8",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "7",
+					"_M": "10",
+					"_WS": "3",
+					"_S": "2",
+					"_T": "2",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Rozlew Krwi: Oddział może wykonać przerzut wszystkich nieudanych rzutów podczas Testu Ranienia.",
+						"Obrona Lekką Tarczą: Za każdą ranę zadaną temu oddziałowi można wykonać rzut na obronę lekką tarczą. Wykonaj rzut k6. Każda 1 oznacza anulowaną ranę."
+					]
+				}
+			],
+			"oddziały elitarne": [
+				{
+					"nazwa": "Pierworodni (Barbarzyńcy)",
+					"punkty": "13",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "7",
+					"_M": "10",
+					"_WS": "3",
+					"_S": "3",
+					"_T": "3",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Dzika Szarża: Podczas szarży oddział otrzymuje dodatkowy bonus +1 do S.",
+						"Podczas szarży oddział otrzymuje 2 dodatkowe ataki do puli za każdy pełen szereg wrogiego oddziału lub +1 atak za każdy punkt W wrogiego modelu pojedynczego. Bonus z Furii nigdy nie może przekroczyć 10 ataków. "
+					]
+				},
+				{
+					"nazwa": "Niszczyciele na Sungalach",
+					"punkty": "20",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "6",
+					"_M": "15",
+					"_WS": "3",
+					"_S": "4",
+					"_T": "5",
+					"_A": "2",
+					"_W": "3",
+					"_zasady_specjalne": [
+						"Straszliwe Obrażenia: Podczas Testu Ranienia każda wyrzucona 1 oznacza dodatkową ranę.",
+						"Furia: Podczas szarży oddział otrzymuje 2 dodatkowe ataki do puli."
+					]
+				},
+				{
+					"nazwa": "Sozruici",
+					"punkty": "11",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "5",
+					"_M": "10",
+					"_WS": "3",
+					"_S": "2",
+					"_T": "2",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Trwoga: Wrogi oddział stykający się z Sozruitami, który stracił podstawki w tym cyklu, musi z końcem cyklu wykonać Test Paniki za każdą straconą podstawkę.",
+						"Kult: Wróg zdobywa 1 Punkt Krwi za zdjęcie dwóch podstawek zamiast jednej z tego oddziału.",
+						"Błogosławieństwo Boga Rzezi: Podczas modlitw cecha LD Sozruitów wynosi 10."
+					]
+	
+				}
+			],
+			"oddziały rzadkie": [
+				{
+					"nazwa": "Rozrywacze (Pół-giganci)",
+					"punkty": "18",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "7",
+					"_M": "10",
+					"_WS": "2",
+					"_S": "4",
+					"_T": "4",
+					"_A": "3",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Miażdżący Cios: Każdy udany rzut w teście WS wykonany przez ten oddział jest traktowany jak Podwójny Cios.",
+						"Rozpłatanie. Przed ciosami Pół-gigantów nie chronią żadne pancerze ani inne rodzaje ochrony"
+					]
+				},
+				{
+					"nazwa": "Gigant",
+					"punkty": "43",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_LD": "6",
+					"_M": "10",
+					"_WS": "2",
+					"_S": "6",
+					"_T": "5",
+					"_A": "5",
+					"_W": "6",
+					"_zasady_specjalne": [
+						"Zawsze zdaje Test Zimnej Krwi oraz Test Paniki.",
+						" Miotanie kamieniami. Jeśli przyjazny oddział w promieniu 20 cm od Giganta został zaszarżowany przez wrogi oddział, Gigant może natychmiast rzucić w szarżującego wroga kamieniami. Wykonaj rzut k6. Wynik 4 lub mniej oznacza, że Gigantowi udało się dorzucić kamieniami do wroga. Teraz należy wykonać kolejny rzut k6, a uzyskany wynik to liczba ataków, które wrogi oddział musi odjąć ze swojej puli. Gigant może użyć tej zdolności raz na cykl. "
+					]
+				}
+			],
+			"oddziały unikalne": [
+				{
+					"nazwa": "Voutarowie",
+					"punkty": "16",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "4",
+					"_M": "10",
+					"_WS": "3",
+					"_S": "4",
+					"_T": "4",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Wyostrzone Zmysły: Oddział może wykonać dowolny obrót przed wykonaniem ruchu lub szarży.",
+						"Brutalna Pułapka: Voutarowie podwajają bonus za atakowanie wroga od boku lub tyłu."
+					]
+				},
+				{
+					"nazwa": "Białe Wiedźmy",
+					"punkty": "12",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "7",
+					"_M": "10",
+					"_WS": "3",
+					"_S": "2",
+					"_T": "2",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Nieustraszony: Zawsze zdaje Test Zimnej Krwi oraz paniki.",
+						"Klątwa Wiedźmy: Test Zimnej Krwi wrogiego oddziału, który walczy z Białymi Wiedźmami, jest zawsze uznawany za nieudany.",
+						"Rozlew Krwi: Oddział może wykonać przerzut wszystkich nieudanych rzutów podczas Testu Ranienia.",
+						"Straszliwe Obrażenia: Podczas Testu Ranienia każda wyrzucona 1 oznacza dodatkową ranę.",
+						"Obrona Lekką Tarczą: Za każdą ranę zadaną temu oddziałowi można wykonać rzut na obronę lekką tarczą. Wykonaj rzut k6. Każda 1 oznacza anulowaną ranę."
+					]
+				},
+				{
+					"nazwa": "Elefanton",
+					"punkty": "88",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_LD": "4",
+					"_M": "10",
+					"_WS": "3",
+					"_S": "8",
+					"_T": "6",
+					"_A": "6",
+					"_W": "7",
+					"_zasady_specjalne": [
+						"Nieustraszony: Zawsze zdaje Test Zimnej Krwi oraz paniki.",
+						"Tratowanie: Za każdy udany rzut podczas Testu Walki Standardowej może wykonać dodatkowy rzut k6. Dodatkowe udane rzuty nie generują kolejnych.",
+						"Monstrum: Wróg wykonuje Test Paniki na 2+ zamiast na 4+."
+					]
+				}
+			],
+			"bohaterowie": [
+				{
+					"nazwa": "Grupa Dowódcza",
+					"punkty": "15",
+					"typ": "Grupa Dowódcza",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_zasady_specjalne": [
+						"Patrz dział Bohaterowie - Grupa Dowódcza."
+					]
+				},
+				{
+					"nazwa": "Czempion Krwi",
+					"punkty": "14",
+					"typ": "Czempion",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_zasady_specjalne": [
+						"Jeśli Czempion Krwi styka się z przyjaznym oddziałem zaangażowanym w walkę z wrogim oddziałem, wykonaj test przed walką. oddział otrzymuje dodatkowe 4 ataki do puli w tym cyklu."
+					]
+				},
+				{
+					"nazwa": "Czempion Ziemi",
+					"punkty": "13",
+					"typ": "Czempion",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_zasady_specjalne": [
+						"Wybrany niezaangażowany w walkę wrogi oddział w promieniu 30 cm może być przemieszczony o 10 cm w dowolną stronę, bez rotowania."
+					]
+				},
+				{
+					"nazwa": "Czempion Ciemności",
+					"punkty": "12",
+					"typ": "Czempion",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_zasady_specjalne": [
+						"Jeśli Czempion Ciemności styka się z przyjaznym oddziałem zaangażowanym w walkę z wrogim oddziałem, może wykonać test za każdym razem, gdy wróg stracił podstawki w tym cyklu.wróg musi natychmiast wykonać Test Paniki za tyle podstawek, ile stracił w tym cyklu."
+					]
+				},
+				{
+					"nazwa": "Kapłanka Wyuzdania",
+					"punkty": "14",
+					"typ": "Mag",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"max_spell_value": 6,
+					"max_number_spells": 2,
+					"max_number_items": 2,
+					"max_items_value": 6,
+					"_zasady_specjalne": [
+						"Może korzystać z czarów i przedmiotów do 6 punktów.",
+						"Każdy przyjazny oddział w promieniu 10 cm od Kapłanki Wyuzdania może wykonać przerzut podczas ruchu lub nieudanego Testu Zimnej Krwi."
+					]
+				},
+				{
+					"nazwa": "Stara Wiedźma",
+					"punkty": "14",
+					"typ": "Mag",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"max_spell_value": 100,
+					"max_number_spells": 2,
+					"max_number_items": 2,
+					"max_items_value": 50,
+					"_zasady_specjalne": [
+						"Może korzystać z czarów i przedmiotów."
+					]
+				},
+				{
+					"nazwa": "Krwawy Wódz",
+					"punkty": "30",
+					"typ": "Generał",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_LD": "2",
+					"_zasady_specjalne": [
+						"Dopóki Generał jest na polu bitwy, armia może wykorzystywać zasadę specjalną armii.",
+						"Więcej zasad - patrz dział Bohaterowie - Generał."
+					]
+				}
+			]
+		},
+		"Dirandis": {
+			"special_rule": "Wierni Bogom: ",
+			"flavor_text": [
+				"Oddziały Podstawowe i Elitarne w armii Dirandis mogą wykonać przerzut nieudanych Testów Modlitwy."
+			],
+			"oddziały podstawowe": [
+				{
+					"nazwa": "Bracia Ognia (Barbarzyńcy)",
+					"punkty": "13",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "7",
+					"_M": "10",
+					"_WS": "3",
+					"_S": "3",
+					"_T": "3",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Skupiony Atak: Podczas szarży oddział otrzymuje bonus +1 do WS."
+					]
+				}
+			],
+			"oddziały elitarne": [
+				{
+					"nazwa": "Wilcze Dziewice (Amazonki)",
+					"punkty": "10",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "7",
+					"_M": "10",
+					"_WS": "3",
+					"_S": "2",
+					"_T": "2",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Precyzyjne Uderzenie: Oddział może wykonać przerzut wszystkich nieudanych rzutów w Teście WS.",
+						"Obrona Lekką Tarczą: Za każdą ranę zadaną temu oddziałowi można wykonać rzut na obronę lekką tarczą. Wykonaj rzut k6. Każda 1 oznacza anulowaną ranę."
+					]
+				},
+				{
+					"nazwa": "Jeźdźcy na Gridonach",
+					"punkty": "21",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "6",
+					"_M": "15",
+					"_WS": "3",
+					"_S": "4",
+					"_T": "4",
+					"_A": "2",
+					"_W": "3",
+					"_zasady_specjalne": [
+						"Skupiony Atak: Podczas szarży oddział otrzymuje bonus +1 do WS.",
+						"Zaciekły Szturm: Podczas szarży oddział otrzymuje +2 dodatkowe ataki za każdy pełen szereg."
+					],
+					"_limit": "max. 2 oddziały w armii 1500 pkt. lub mniejszej, max. 5 oddziałów w armii powyżej 1500 pkt."
+				},
+				{
+					"nazwa": "Wilczy Bracia",
+					"punkty": "15",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "6",
+					"_M": "10",
+					"_WS": "3",
+					"_S": "3",
+					"_T": "3",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Skupiony Atak: Podczas szarży oddział otrzymuje bonus +1 do WS.",
+						"Magiczne Runy: Podczas Testu Modlitwy uzyskana suma 3 lub mniej oznacza darmową modlitwę (pula modlitw nie zmniejsza się).",
+						"Nieustraszony: Zawsze zdaje Test Zimnej Krwi oraz paniki."
+					]
+				}
+			],
+			"oddziały rzadkie": [
+				{
+					"nazwa": "Oddani (Pół-giganci)",
+					"punkty": "22",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "7",
+					"_M": "10",
+					"_WS": "2",
+					"_S": "4",
+					"_T": "4",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Miażdżący Cios: Podczas szarży każdy udany rzut w teście WS wykonany przez ten oddział jest traktowany jak Podwójny Cios."
+					]
+				},
+				{
+					"nazwa": "Gigant",
+					"punkty": "43",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_LD": "6",
+					"_M": "10",
+					"_WS": "2",
+					"_S": "6",
+					"_T": "5",
+					"_A": "5",
+					"_W": "6",
+					"_zasady_specjalne": [
+						"Nieustraszony: Zawsze zdaje Test Zimnej Krwi."
+					]
+				}
+			],
+			"oddziały unikalne": [
+				{
+					"nazwa": "Sasquatche",
+					"punkty": "19",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "5",
+					"_M": "10",
+					"_WS": "2",
+					"_S": "5",
+					"_T": "5",
+					"_A": "2",
+					"_W": "2",
+					"_zasady_specjalne": [
+						"Zasadzka: Oddział Sasquatchy może wykonać darmowy ruch przed bitwą. Dodatkowo wróg podczas szarży na Sasquatche nie może korzystać z bonusów do szarży oraz niezależnych."
+					]
+				},
+				{
+					"nazwa": "Wilhary",
+					"punkty": "17",
+					"minimal_unit_size": 4,
+					"maximum_unit_size": 16,
+					"_LD": "6",
+					"_M": "15",
+					"_WS": "2",
+					"_S": "3",
+					"_T": "3",
+					"_A": "2",
+					"_W": "3",
+					"_zasady_specjalne": [
+						"Dzika Szybkość: Oddział zawsze posiada specjalną dodatkową 1k6 podczas ruchu i szarż, bez względu na sytuację.",
+						"Kreatura: Oddział nie może wykonywać modlitw."
+					]
+				},
+				{
+					"nazwa": "Elefanton",
+					"punkty": "88",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_LD": "4",
+					"_M": "10",
+					"_WS": "3",
+					"_S": "8",
+					"_T": "6",
+					"_A": "6",
+					"_W": "7",
+					"_zasady_specjalne": [
+						"Nieustraszony: Zawsze zdaje Test Zimnej Krwi.",
+						"Tratowanie: Za każdy udany rzut podczas Testu Walki Standardowej może wykonać dodatkowy rzut k6. Dodatkowe udane rzuty nie generują kolejnych.",
+						"Monstrum: Wróg wykonuje Test Paniki na 2+ zamiast na 4+."
+					]
+				}
+			],
+			"bohaterowie": [
+				{
+					"nazwa": "Grupa Dowódcza",
+					"punkty": "15",
+					"typ": "Grupa Dowódcza",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_zasady_specjalne": [
+						"Patrz dział Bohaterowie - Grupa Dowódcza."
+					]
+				},
+				{
+					"nazwa": "Czempion Kniei",
+					"punkty": "12",
+					"typ": "Czempion",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_zasady_specjalne": [
+						"Jeśli Czempion Kniei styka się z przyjaznym oddziałem zaangażowanym w walkę z wrogim oddziałem, wykonaj test przed walką. Oddział otrzymuje +1 do S w tym cyklu. Czempion Kniei pozwala wykonać przerzut podczas rzutu za teren."
+					]
+				},
+				{
+					"nazwa": "Czempion Bestii",
+					"punkty": "13",
+					"typ": "Czempion",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_zasady_specjalne": [
+						"Jeśli Generał miał nieudany rzut wydając rozkaz oddziałowi Odunów, Amazonkom na Pająkach, Leśnym Wijom lub Dzikiej Zwierzynie. Generał może przerzucić nieudany wynik. Czempion Bestii dołączony do wymienionych oddziałów dodaje 2 kolejne ataki do puli."
+					]
+				},
+				{
+					"nazwa": "Czempion Łowów",
+					"punkty": "15",
+					"typ": "Czempion",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_zasady_specjalne": [
+						"Jeśli Czempion Łowów styka się z przyjaznym oddziałem zaangażowanym w walkę z wrogim oddziałem, może wykonać test za każdym razem, gdy przyjazny oddział wykonuje ataki. Każda 6 uznawana jest za udane trafienie."
+					]
+				},
+				{
+					"nazwa": "Druid",
+					"punkty": "14",
+					"typ": "Mag",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"max_spell_value": 6,
+					"max_number_spells": 2,
+					"max_number_items": 2,
+					"max_items_value": 6,
+					"_zasady_specjalne": [
+						"Może korzystać z czarów i przedmiotów do 6 punktów.",
+						"Każdy przyjazny oddział Odunów oraz Trefloq mogą wykonać w 20 cm od Druida przerzut nieudanych wyników podczas rzutu na obronę (Zdrewnienie)."
+					]
+				},
+				{
+					"nazwa": "Mistrz Bestii",
+					"punkty": "14",
+					"typ": "Mag",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"max_spell_value": 100,
+					"max_number_spells": 2,
+					"max_number_items": 2,
+					"max_items_value": 50,
+					"_zasady_specjalne": [
+						"Może korzystać z czarów i przedmiotów."
+					]
+				},
+				{
+					"nazwa": "Gaeldaukar",
+					"punkty": "30",
+					"typ": "Generał",
+					"minimal_unit_size": 1,
+					"maximum_unit_size": 1,
+					"_LD": "2",
+					"_zasady_specjalne": [
+						"Dopóki Generał jest na polu bitwy, armia może wykorzystywać zasadę specjalną armii.",
+						"Więcej zasad – patrz dział Bohaterowie – Generał."
+					]
+				}
+			]
+		}
+	}
+}

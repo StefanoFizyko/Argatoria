@@ -1,0 +1,44 @@
+{
+  "Items": [
+    {
+      "nazwa": "Talizman z Ragloq",
+      "koszt": 2,
+      "opis": "Podczas Rzutu za Aktywację pozwala wykonać przerzut jednego wyniku na kości."
+    },
+    {
+      "nazwa": "Eliksir",
+      "koszt": 1,
+      "opis": "Gracz może wykonać przerzut Testu Inicjatywy z modyfikatorem +2."
+    },
+    {
+      "nazwa": "Stary Pergamin",
+      "koszt": 2,
+      "opis": "Mag może rzucić drugi czar w cyklu, ale nie może się on powtórzyć."
+    },
+    {
+      "nazwa": "Księga Zmarłych",
+      "koszt": 8,
+      "opis": "Każdy wrogi oddział w promieniu 20 cm od Maga musi mieć wykonany test k6. Wynik 2 lub mniej oznacza, że wrogi oddział otrzymuje 2 rany."
+    },
+    {
+      "nazwa": "Dispel",
+      "koszt": 1,
+      "opis": "Jeśli wrogi Mag użył czaru lub przedmiotu innego niż Dispel, może być wykonany test k6. Wynik 5 lub mniej oznacza rozproszenie magii. Wynik 1 oznacza, że Dispel nie stracił mocy i będzie mógł być ponownie użyty."
+    },
+    {
+      "nazwa": "Pierścień Mocy",
+      "koszt": 2,
+      "opis": "Mag może podczas aktywacji wykonać teleportację do 40 cm."
+    },
+    {
+      "nazwa": "Kostur",
+      "koszt": 3,
+      "opis": "Dowolny wybrany oddział w promieniu 20 cm od Maga musi wykonać przerzut wszystkich nieudanych lub udanych trafień w walce."
+    },
+    {
+      "nazwa": "Diadem Rozpaczy",
+      "koszt": 4,
+      "opis": "Diadem może być wykorzystany do wsparcia oddziału w promieniu 20 cm od Maga. Każdy wynik 1 na ranieniu oznacza zadanie 2 ran."
+    }
+  ]
+}

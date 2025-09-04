@@ -43,6 +43,20 @@ type SelectedUnit = {
   Banners?: { nazwa: string; koszt: number }[];
 };
 
+// Define a type for the frakcje object
+type FrakcjeData = {
+  [key: string]: {
+    special_rule?: string | string[];
+    flavor_text?: string[] | string;
+    ["oddziały podstawowe"]?: Oddzial[];
+    ["oddziały elitarne"]?: Oddzial[];
+    ["oddziały rzadkie"]?: Oddzial[];
+    ["oddziały unikalne"]?: Oddzial[];
+    ["bohaterowie"]?: Oddzial[];
+    // ...other possible keys
+  };
+};
+
 export default function Home() {
   const [step, setStep] = useState<"setup" | "frakcja" | "oddzialy">("setup");
   const [selectedFrakcja, setSelectedFrakcja] = useState<string | null>(null);
@@ -51,9 +65,9 @@ export default function Home() {
   const [showArmyRules, setShowArmyRules] = useState(false);
   const router = useRouter();
 
-  const frakcjeNames = useMemo(() => Object.keys(unitsData.frakcje), []);
+  const frakcjeNames = useMemo(() => Object.keys((unitsData.frakcje as FrakcjeData)), []);
   const selectedFrakcjaData = useMemo(
-    () => (selectedFrakcja ? (unitsData.frakcje as any)[selectedFrakcja] : null),
+    () => selectedFrakcja ? (unitsData.frakcje as FrakcjeData)[selectedFrakcja] : null,
     [selectedFrakcja]
   );
   const podstawoweOddzialy = useMemo(

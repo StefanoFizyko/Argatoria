@@ -1,9 +1,35 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
 
+type ExportUnit = {
+  oddzial: {
+    nazwa: string;
+    punkty: string;
+    typ?: string;
+    minimal_unit_size?: number;
+    maximum_unit_size?: number;
+    [key: string]: unknown;
+  };
+  count: number;
+  id: string;
+  type: string;
+  Spells?: { nazwa: string; koszt: number }[];
+  Items?: { nazwa: string; koszt: number }[];
+  Artifacts?: { nazwa: string; koszt: number }[];
+  Banners?: { nazwa: string; koszt: number }[];
+};
+
+type ExportArmyData = {
+  selectedUnits: ExportUnit[];
+  selectedFrakcja: string;
+  selectedFrakcjaData: unknown;
+  gamePoints: number;
+  totalPoints: number;
+};
+
 export default function ExportArmy() {
-  const [army, setArmy] = useState<any>(null);
-  const [loading, setLoading] = useState(false);
+  const [army, setArmy] = useState<ExportArmyData | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const exportRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

@@ -1289,9 +1289,9 @@
         "Lord Nekromanta – Wasze Dusze Należą do Nas! Jeśli przeciwnik Lorda Nekromanty wyrzucił podczas Testu Inicjatywy wynik 1 lub 2, przegrywa test bez względu na inne zasady. Ponadto, jeśli wróg ma stracone 5 Punktów Krwi lub więcej, raz na cykl możesz ustawić oddział Potępieńców (4 podstawki, LD 3 - M 10 - WS 2 - S 2 - T 2 - A2 - W1, nieustraszony, kreatura) w promieniu 20 cm od Lorda Nekromanty, zwrócony w dowolną stronę. W nowym cyklu oddział otrzymuje Kość Akcji i może być normalnie aktywowany. Po zniszczeniu nie jest wliczany do straconych Punktów Krwi.",
         "Lord Sheol-morg – Ab... huul! Daaqul, salib!!! Do armii zawsze dołączony jest za darmo Mistrz Rytuału (Mag), który jest wliczany do limitu Magów,który przed bitwą odprawia rytuał (Bestii, Bólu lub Ciemności), 1–2 Rytuał BestiiKażdy Oddział Podstawowy oraz Elitarny w armii maruch oraz szarżę powiększone o 2 cm.3–4 Rytuał BóluKażda jednostka Podstawowa oraz Elitarna w armii, jeślinie posiada ochrony lub pancerza, może wykonywać rzut k6 za każdą otrzymaną ranę. Wynik 1 oznacza anulowaną ranę.5–6 Rytuał CiemnościKażdy Oddział Podstawowy oraz Elitarny w armiiposiada zasadę Strach. Po wykonaniu udanej szarżytym oddziałem wróg musi wykonać Test Paniki dla 1 podstawki. Jeśli oddział jest hordą, wróg musi wykonać Test Paniki dla 2 podstawek."
       ],
-      "oddziały podstawowe (Oddziały, które są Oddziałami Podstawowymi, nie są dostępne jako Oddziały Elitarne": [
+      "oddziały podstawowe": [
         {
-          "nazwa": "Rogaci Wojownicy (Lord Otchłani)",
+          "nazwa": "Rogaci Wojownicy - Lord Otchłani",
           "punkty": "15",
           "_LD": "6",
           "_M": "10",
@@ -1307,7 +1307,7 @@
           ]
         },
         {
-          "nazwa": "Truhlaki (Lord Nekromanta)",
+          "nazwa": "Truhlaki - Lord Nekromanta",
           "punkty": "7",
           "_LD": "4",
           "_M": "10",
@@ -1325,7 +1325,7 @@
           ]
         },
         {
-          "nazwa": "Strażnicy Rytuałów (Lord Sheol-morg)",
+          "nazwa": "Strażnicy Rytuałów - Lord Sheol-morg",
           "punkty": "13",
           "_LD": "6",
           "_M": "10",

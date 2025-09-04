@@ -65,9 +65,9 @@ export default function Home() {
   const [showArmyRules, setShowArmyRules] = useState(false);
   const router = useRouter();
 
-  const frakcjeNames = useMemo(() => Object.keys((unitsData.frakcje as FrakcjeData)), []);
+  const frakcjeNames = useMemo(() => Object.keys(unitsData.frakcje ?? {}), []);
   const selectedFrakcjaData = useMemo(
-    () => selectedFrakcja ? (unitsData.frakcje as FrakcjeData)[selectedFrakcja] : null,
+    () => selectedFrakcja ? ((unitsData.frakcje as unknown) as FrakcjeData)[selectedFrakcja] : null,
     [selectedFrakcja]
   );
   const podstawoweOddzialy = useMemo(

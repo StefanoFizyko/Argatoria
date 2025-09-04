@@ -19,10 +19,16 @@ type ExportUnit = {
   Banners?: { nazwa: string; koszt: number }[];
 };
 
+type SelectedFrakcjaData = {
+  special_rule?: string | string[];
+  flavor_text?: string[];
+  [key: string]: unknown;
+};
+
 type ExportArmyData = {
   selectedUnits: ExportUnit[];
   selectedFrakcja: string;
-  selectedFrakcjaData: unknown;
+  selectedFrakcjaData: SelectedFrakcjaData;
   gamePoints: number;
   totalPoints: number;
 };
@@ -147,7 +153,7 @@ export default function ExportArmy() {
         <div className="mb-4">
           <span className="font-semibold text-lg">Wybrane jednostki:</span>
           <ul className="list-disc ml-6">
-            {army.selectedUnits.map((unit: any) => (
+            {army.selectedUnits.map((unit: ExportUnit) => (
               <li key={unit.id} className="mb-4">
                 <div className="font-bold text-base">
                   {unit.oddzial.nazwa}{" "}
@@ -176,36 +182,24 @@ export default function ExportArmy() {
                     )}
                   </ul>
                 )}
-                {unit.Spells?.length > 0 && (
+                {unit.Spells && unit.Spells.length > 0 && (
                   <div className="text-sm mt-1 font-semibold text-blue-900">
-                    Zaklęcia:{" "}
-                    {unit.Spells.map((i: { nazwa: string }) => i.nazwa).join(
-                      ", "
-                    )}
+                    Zaklęcia: {unit.Spells.map(i => i.nazwa).join(", ")}
                   </div>
                 )}
-                {unit.Items?.length > 0 && (
+                {unit.Items && unit.Items.length > 0 && (
                   <div className="text-sm mt-1 font-semibold text-blue-900">
-                    Przedmioty:{" "}
-                    {unit.Items.map((i: { nazwa: string }) => i.nazwa).join(
-                      ", "
-                    )}
+                    Przedmioty: {unit.Items.map(i => i.nazwa).join(", ")}
                   </div>
                 )}
-                {unit.Artifacts?.length > 0 && (
+                {unit.Artifacts && unit.Artifacts.length > 0 && (
                   <div className="text-sm mt-1 font-semibold text-blue-900">
-                    Artefakty:{" "}
-                    {unit.Artifacts.map((i: { nazwa: string }) => i.nazwa).join(
-                      ", "
-                    )}
+                    Artefakty: {unit.Artifacts.map(i => i.nazwa).join(", ")}
                   </div>
                 )}
-                {unit.Banners?.length > 0 && (
+                {unit.Banners && unit.Banners.length > 0 && (
                   <div className="text-sm mt-1 font-semibold text-blue-900">
-                    Sztandary:{" "}
-                    {unit.Banners.map((i: { nazwa: string }) => i.nazwa).join(
-                      ", "
-                    )}
+                    Sztandary: {unit.Banners.map(i => i.nazwa).join(", ")}
                   </div>
                 )}
               </li>

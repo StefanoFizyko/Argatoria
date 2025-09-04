@@ -28,7 +28,7 @@
     {
       "nazwa": "Piorun",
       "koszt": 7,
-      "opis": "Wybierz dowolny niezaangażowany w walkę wrogi oddział lub model pojedynczy w promieniu 20 cm. Rzuć k6 – wynik 2 lub mniej oznacza udany czar. Wybrany oddział otrzymuje trzy rany. Jeśli jednostka ma dowolny rodzaj ochrony, pancerza lub jest na większej podstawce niż 20 mm, otrzymuje 4 rany. Przed Piorunem nie chronią żadne pancerze."
+      "opis": "Wybierz dowolny niezaangażowany w walkę wrogi oddział lub model pojedynczy na polu bitwy. Rzuć k6 – wynik 2 lub mniej oznacza udany czar. Wybrany oddział otrzymuje trzy rany. Jeśli jednostka ma dowolny rodzaj ochrony, pancerza lub jest na większej podstawce niż 20 mm, otrzymuje 4 rany. Przed Piorunem nie chronią żadne pancerze."
     },
     {
       "nazwa": "Podmuch Śmierci",
@@ -38,7 +38,7 @@
     {
       "nazwa": "Zamroczenie",
       "koszt": 2,
-      "opis": "Wybierz dowolny oddział lub model pojedynczy w promieniu 30 cm. Rzuć k6 – wynik 2 lub mniej oznacza udany czar. W kolejnym cyklu oddział lub model pojedynczy może wykonywać ruch lub szarżę tylko na odległość k6 lub 2k6 cm bez dodawania cechy M."
+      "opis": "Wybierz dowolny oddział lub model pojedynczy w promieniu 30 cm. Rzuć k6 – wynik 2 lub mniej oznacza udany czar. W kolejnym cyklu oddział lub model pojedynczy może wykonywać ruch lub szarżę tylko na odległość k6 lub 2k6 cm bez dodawania cechy M. Jeśli szarża oddziału była nieudana, pozostaje on w miejscu, ale może być obrócony przez przeciwnika do 90 stopni. "
     },
     {
       "nazwa": "Zemsta",

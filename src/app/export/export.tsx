@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
+import { jsPDF } from "jspdf";
 
 type ExportUnit = {
   oddzial: {
@@ -8,6 +9,7 @@ type ExportUnit = {
     typ?: string;
     minimal_unit_size?: number;
     maximum_unit_size?: number;
+    _zasady_specjalne?: string[];
     [key: string]: unknown;
   };
   count: number;
@@ -44,36 +46,180 @@ export default function ExportArmy() {
   }, []);
 
   const handleExportPDF = async () => {
-    if (!exportRef.current) return;
-
-    // ✅ Open new tab synchronously
-    const win = window.open("", "_blank");
+    if (!army) return;
     setLoading(true);
 
     try {
-      const html2canvas = (await import("html2canvas")).default;
-      const jsPDF = (await import("jspdf")).default;
-
-      await new Promise(resolve => setTimeout(resolve, 100));
-      const canvas = await html2canvas(exportRef.current, {
-        backgroundColor: "#fff",
-        scale: 2,
-      });
-
-      const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF({
         orientation: "portrait",
-        unit: "px",
-        format: [canvas.width, canvas.height],
+        unit: "mm",
+        format: "a4",
       });
 
-      pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height);
+      // Use built-in font instead of custom font
+      pdf.setFont("helvetica");
 
-      // ✅ Show PDF in the new tab
-      if (win) {
-        const blobUrl = pdf.output("bloburl");
-        win.location.href = blobUrl.toString();
+      // Margins and layout
+      const left = 15;
+      const right = 15;
+      const wrapWidth = 150;
+      let y = 20;
+      const lineHeight = 5;
+      const pageHeight = 297; // A4 in mm
+      const bottomMargin = 20;
+
+      // Helper function to handle page breaks
+      function checkPageBreak(pdf: jsPDF, y: number, pageHeight: number, bottomMargin: number) {
+        if (y > pageHeight - bottomMargin) {
+          pdf.addPage();
+          pdf.setFont("helvetica"); // Set built-in font again after new page
+          return 20;
+        }
+        return y;
       }
+
+      // Title
+      pdf.setFontSize(16);
+      let wrapped = pdf.splitTextToSize("Podsumowanie Armii", wrapWidth);
+      pdf.text(wrapped, left, y);
+      y += lineHeight * wrapped.length + 3;
+
+      // Frakcja
+      pdf.setFontSize(12);
+      wrapped = pdf.splitTextToSize(`Frakcja: ${army.selectedFrakcja}`, wrapWidth);
+      pdf.text(wrapped, left, y);
+      y += lineHeight * wrapped.length;
+
+      // Points
+      wrapped = pdf.splitTextToSize(`Suma punktów: ${army.totalPoints} / ${army.gamePoints}`, wrapWidth);
+      pdf.text(wrapped, left, y);
+      y += lineHeight * wrapped.length;
+
+      // Special rules
+      pdf.setFontSize(11);
+      pdf.text("Zasady specjalne:", left, y);
+      y += lineHeight;
+
+      const rules = Array.isArray(army.selectedFrakcjaData?.special_rule)
+        ? army.selectedFrakcjaData.special_rule
+        : [army.selectedFrakcjaData?.special_rule];
+
+      rules.forEach((rule) => {
+        if (rule) {
+          const ruleLines = String(rule).split("\n");
+          ruleLines.forEach((line) => {
+            const wrapped = pdf.splitTextToSize(`- ${line}`, 100);
+            pdf.text(wrapped, left + 5, y);
+            y += lineHeight * wrapped.length;
+            y = checkPageBreak(pdf, y, pageHeight, bottomMargin);
+          });
+        }
+      });
+
+      // Only a small space between special rules and flavor text
+      if (Array.isArray(army.selectedFrakcjaData?.flavor_text)) {
+        y += 2; // minimal space
+        army.selectedFrakcjaData.flavor_text.forEach((txt) => {
+          const txtLines = String(txt).split("\n");
+          txtLines.forEach((line) => {
+            const wrapped = pdf.splitTextToSize(`- ${line}`, 110);
+            pdf.text(wrapped, left + 5, y);
+            y += lineHeight * wrapped.length;
+            y = checkPageBreak(pdf, y, pageHeight, bottomMargin);
+          });
+        });
+      }
+
+      // Units
+      pdf.setFontSize(12);
+      pdf.text("Wybrane jednostki:", left, y);
+      y += lineHeight;
+
+      pdf.setFontSize(10);
+      army.selectedUnits.forEach((unit) => {
+        // Name and points
+        wrapped = pdf.splitTextToSize(
+          `${unit.oddzial.nazwa} x${unit.count} (${unit.oddzial.punkty} pkt)`,
+          wrapWidth - 10
+        );
+        pdf.text(wrapped, left + 5, y); // indent by 5mm
+        y += lineHeight * wrapped.length;
+
+        // Stats
+        const stats = Object.entries(unit.oddzial)
+          .filter(
+            ([k, v]) =>
+              k.startsWith("_") &&
+              v !== undefined &&
+              v !== null &&
+              String(v).trim() !== "" &&
+              typeof v !== "object"
+          )
+          .map(([k, v]) => `${k.replace("_", "")}: ${String(v)}`)
+          .join(", ");
+        if (stats) {
+          wrapped = pdf.splitTextToSize(`Statystyki: ${stats}`, wrapWidth - 15);
+          pdf.text(wrapped, left + 10, y);
+          y += lineHeight * wrapped.length;
+        }
+
+        // Min/max
+        if (
+          unit.oddzial.minimal_unit_size !== undefined ||
+          unit.oddzial.maximum_unit_size !== undefined
+        ) {
+          wrapped = pdf.splitTextToSize(
+            `Min: ${unit.oddzial.minimal_unit_size ?? "-"} / Max: ${unit.oddzial.maximum_unit_size ?? "-"}`,
+            wrapWidth - 15
+          );
+          pdf.text(wrapped, left + 10, y);
+          y += lineHeight * wrapped.length;
+        }
+
+        // Special rules
+        if (Array.isArray(unit.oddzial._zasady_specjalne) && unit.oddzial._zasady_specjalne.length > 0) {
+          pdf.text("Zasady specjalne:", left + 10, y);
+          y += lineHeight;
+          unit.oddzial._zasady_specjalne.forEach((z) => {
+            // Split by line breaks if present
+            const ruleLines = String(z).split("\n");
+            ruleLines.forEach((line) => {
+              const wrapped = pdf.splitTextToSize(`- ${line}`, 100); // use small wrap width
+              pdf.text(wrapped, left + 15, y);
+              y += lineHeight * wrapped.length;
+              y = checkPageBreak(pdf, y, pageHeight, bottomMargin);
+            });
+            y += 1; // Extra space between rules
+          });
+        }
+
+        // Spells, Items, Artifacts, Banners
+        if (unit.Spells && unit.Spells.length > 0) {
+          wrapped = pdf.splitTextToSize(`Zaklęcia: ${unit.Spells.map(i => i.nazwa).join(", ")}`, wrapWidth - 15);
+          pdf.text(wrapped, left + 10, y);
+          y += lineHeight * wrapped.length;
+        }
+        if (unit.Items && unit.Items.length > 0) {
+          wrapped = pdf.splitTextToSize(`Przedmioty: ${unit.Items.map(i => i.nazwa).join(", ")}`, wrapWidth - 15);
+          pdf.text(wrapped, left + 10, y);
+          y += lineHeight * wrapped.length;
+        }
+        if (unit.Artifacts && unit.Artifacts.length > 0) {
+          wrapped = pdf.splitTextToSize(`Artefakty: ${unit.Artifacts.map(i => i.nazwa).join(", ")}`, wrapWidth - 15);
+          pdf.text(wrapped, left + 10, y);
+          y += lineHeight * wrapped.length;
+        }
+        if (unit.Banners && unit.Banners.length > 0) {
+          wrapped = pdf.splitTextToSize(`Sztandary: ${unit.Banners.map(i => i.nazwa).join(", ")}`, wrapWidth - 15);
+          pdf.text(wrapped, left + 10, y);
+          y += lineHeight * wrapped.length;
+        }
+
+        y += 3; // Space between units
+        y = checkPageBreak(pdf, y, pageHeight, bottomMargin);
+      });
+
+      pdf.save("armia.pdf");
     } catch (err) {
       alert("Błąd eksportu PDF: " + err);
     }
@@ -83,10 +229,18 @@ export default function ExportArmy() {
 
   const handleExportJPG = async () => {
     if (!exportRef.current) return;
-
     setLoading(true);
 
     try {
+      // Force all children to use standard colors
+      const exportNode = exportRef.current;
+      exportNode.querySelectorAll("*").forEach(el => {
+        (el as HTMLElement).style.backgroundColor = "#fff";
+        (el as HTMLElement).style.color = "#222";
+      });
+      exportNode.style.backgroundColor = "#fff";
+      exportNode.style.color = "#222";
+
       const html2canvas = (await import("html2canvas")).default;
       await new Promise(resolve => setTimeout(resolve, 100));
 
@@ -97,7 +251,6 @@ export default function ExportArmy() {
 
       const imgData = canvas.toDataURL("image/jpeg");
 
-      // Open image in new tab using window.open with data URL
       const win = window.open();
       if (win) {
         win.document.write(
@@ -122,7 +275,7 @@ export default function ExportArmy() {
       <div
         ref={exportRef}
         className="bg-gray-50 p-6 rounded shadow w-full max-w-2xl"
-        style={{ fontSize: "1.15rem", color: "#222" }}
+        style={{ fontSize: "1.15rem", color: "#222", backgroundColor: "#fff", filter: "none" }}
       >
         <div className="mb-4">
           <span className="font-semibold text-lg">Frakcja:</span>{" "}
@@ -214,13 +367,6 @@ export default function ExportArmy() {
           disabled={loading}
         >
           {loading ? "Eksportuję..." : "Otwórz PDF"}
-        </button>
-        <button
-          className="bg-blue-600 text-white px-6 py-3 rounded font-bold text-lg"
-          onClick={handleExportJPG}
-          disabled={loading}
-        >
-          {loading ? "Eksportuję..." : "Otwórz JPG"}
         </button>
       </div>
     </div>

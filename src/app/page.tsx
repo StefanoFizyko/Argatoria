@@ -9,6 +9,15 @@ import BannersData from "./data/magical_banners.json";
 import { Oddzial, OddzialCard } from "./Oddzialcard";
 import { FrakcjeList } from "./FrakcjeList";
 import { SelectedUnitsList } from "./selectedUnitsList";
+import pl from "./data/pl.json";
+import en from "./data/en.json";
+
+// Add type for translation objects to allow string indexing
+type TranslationStrings = {
+  [key: string]: string;
+};
+
+// Removed duplicate 'translations' declaration
 
 import {
   getMinPodstawowe,
@@ -58,34 +67,57 @@ type FrakcjeData = {
   };
 };
 
+const translations = { pl, en };
+
 export default function Home() {
   const [step, setStep] = useState<"setup" | "frakcja" | "oddzialy">("setup");
   const [selectedFrakcja, setSelectedFrakcja] = useState<string | null>(null);
   const [selectedUnits, setSelectedUnits] = useState<SelectedUnit[]>([]);
   const [gamePoints, setGamePoints] = useState<number>(800);
   const [showArmyRules, setShowArmyRules] = useState(false);
+  const [lang, setLang] = useState<"pl" | "en">("pl");
   const router = useRouter();
 
-useEffect(() => {
-  const savedUnits = localStorage.getItem("selectedUnits");
-  const savedFrakcja = localStorage.getItem("selectedFrakcja");
-  const savedStep = localStorage.getItem("step");
-  if (savedUnits) setSelectedUnits(JSON.parse(savedUnits));
-  if (savedFrakcja) setSelectedFrakcja(savedFrakcja);
-  if (savedStep) setStep(savedStep as "setup" | "frakcja" | "oddzialy");
-}, []); // load once on mount
+  // Translation function
+  const t = useCallback(
+    (key: string, params?: Record<string, string | number>) => {
+      let str = (translations[lang] as TranslationStrings)[key] || key;
+      if (params) {
+        Object.entries(params).forEach(([k, v]) => {
+          str = str.replace(`{${k}}`, String(v));
+        });
+      }
+      return str;
+    },
+    [lang]
+  );
 
-useEffect(() => {
-  localStorage.setItem("selectedUnits", JSON.stringify(selectedUnits));
-}, [selectedUnits]); // save on changes
+  useEffect(() => {
+    const savedUnits = localStorage.getItem("selectedUnits");
+    const savedFrakcja = localStorage.getItem("selectedFrakcja");
+    const savedStep = localStorage.getItem("step");
+    const savedLang = localStorage.getItem("lang");
+    if (savedUnits) setSelectedUnits(JSON.parse(savedUnits));
+    if (savedFrakcja) setSelectedFrakcja(savedFrakcja);
+    if (savedStep) setStep(savedStep as "setup" | "frakcja" | "oddzialy");
+    if (savedLang === "en" || savedLang === "pl") setLang(savedLang);
+  }, []);
 
-useEffect(() => {
-  if (selectedFrakcja) localStorage.setItem("selectedFrakcja", selectedFrakcja);
-}, [selectedFrakcja]); // save on changes
+  useEffect(() => {
+    localStorage.setItem("selectedUnits", JSON.stringify(selectedUnits));
+  }, [selectedUnits]);
 
-useEffect(() => {
-  localStorage.setItem("step", step);
-}, [step]); // save on changes
+  useEffect(() => {
+    if (selectedFrakcja) localStorage.setItem("selectedFrakcja", selectedFrakcja);
+  }, [selectedFrakcja]);
+
+  useEffect(() => {
+    localStorage.setItem("step", step);
+  }, [step]);
+
+  useEffect(() => {
+    localStorage.setItem("lang", lang);
+  }, [lang]);
 
   const frakcjeNames = useMemo(() => Object.keys(unitsData.frakcje ?? {}), []);
   const selectedFrakcjaData = useMemo(
@@ -115,7 +147,6 @@ useEffect(() => {
 
   const allSpells = useMemo(() => SpellsData.Spells, []);
   const allItems = useMemo(() => ItemsData.Items, []);
-  // FIX: load artifacts array safely (allow different JSON shapes)
   const allArtifacts = useMemo(
     () => ArtifactsData?.Artifacts ?? [],
     []
@@ -236,7 +267,7 @@ useEffect(() => {
     ]);
   }, []);
 
-  // ✅ Spell handling
+  // Spell handling
   const handleAddSpells = (
     unitId: string,
     spell: { nazwa: string; koszt: number}
@@ -274,7 +305,7 @@ useEffect(() => {
     );
   };
 
-  // ✅ Magic Items handling
+  // Magic Items handling
   const handleAddItem = (
     unitId: string,
     item: { nazwa: string; koszt: number }
@@ -312,7 +343,7 @@ useEffect(() => {
     );
   };
 
-  // Corrected handlers for adding/removing artifacts and banners (similar to items/spells)
+  // Artifacts and banners
   const handleAddArtifact = (
     unitId: string,
     artifact: { nazwa: string; koszt: number }
@@ -320,7 +351,6 @@ useEffect(() => {
     setSelectedUnits((prev) =>
       prev.map((u) => {
         if (u.id !== unitId) return u;
-        // Only allow for generals
         if (u.type !== "bohater_generał") return u;
 
         const maxPoints = Number(u.oddzial.max_items_value) || 0;
@@ -356,21 +386,19 @@ useEffect(() => {
     setSelectedUnits((prev) =>
       prev.map((u) => {
         if (u.id !== unitId) return u;
-        // Only allow for grupa dowódcza units
         if (u.type !== "bohater_grupa") return u;
 
-        // Army-wide banners count (recompute per update)
         const armyBanners = prev
           .filter(x => x.type === "bohater_grupa")
           .reduce((s, x) => s + ((x.Banners || []).length), 0);
 
         const maxPoints = Number(u.oddzial.max_items_value) || 0;
-        const maxBannersPerUnit = 1; // typically one banner per grupa unit, enforce at unit level
+        const maxBannersPerUnit = 1;
         const currentBanners = u.Banners || [];
         const totalPoints = currentBanners.reduce((sum, b) => sum + b.koszt, 0);
 
         if (currentBanners.length >= maxBannersPerUnit) return u;
-        if (armyBanners >= MAX_BANNERS_TOTAL) return u; // enforce global limit
+        if (armyBanners >= MAX_BANNERS_TOTAL) return u;
         if (maxPoints > 0 && totalPoints + banner.koszt > maxPoints) return u;
 
         return { ...u, Banners: [...currentBanners, banner] };
@@ -391,32 +419,27 @@ useEffect(() => {
     );
   };
 
-  // compute current banners count across all Grupa Dowódcza units
   const grupaDowodczaBannersCount = selectedUnits
     .filter((u) => u.type === "bohater_grupa")
     .reduce((sum, u) => sum + ((u.Banners || []).length), 0);
 
-  // per-unit permission function (single source of truth)
-  // Regular magic Items and Spells are only for mages.
   function canTakeItems(unit: SelectedUnit) {
     return unit.type === "bohater_mag";
   }
-function canTakeArtifacts(unit: SelectedUnit) {
-  return unit.type === "bohater_generał";
-}
-function canTakeBanner(unit: SelectedUnit) {
-  return unit.type === "bohater_grupa";
-}
-// --- LIMITS ---
-const minPodstawowe = getMinPodstawowe(gamePoints);
-const maxRzadkie = getMaxRzadkie(gamePoints);
-const maxUnikalne = getMaxUnikalne(gamePoints);
-const [minGrupa, maxGrupa] = getGrupaDowodczaLimits(gamePoints);
-const [minCzempion, maxCzempion] = getCzempionLimits(gamePoints);
-// ENFORCE: 1 mag per every full 500 points
-const maxMag = Math.floor(gamePoints / 500);
+  function canTakeArtifacts(unit: SelectedUnit) {
+    return unit.type === "bohater_generał";
+  }
+  function canTakeBanner(unit: SelectedUnit) {
+    return unit.type === "bohater_grupa";
+  }
 
-// --- COUNTS ---
+  const minPodstawowe = getMinPodstawowe(gamePoints);
+  const maxRzadkie = getMaxRzadkie(gamePoints);
+  const maxUnikalne = getMaxUnikalne(gamePoints);
+  const [minGrupa, maxGrupa] = getGrupaDowodczaLimits(gamePoints);
+  const [minCzempion, maxCzempion] = getCzempionLimits(gamePoints);
+  const maxMag = Math.floor(gamePoints / 500);
+
   const podstawoweCount = selectedUnits.filter(u => u.type === "podstawowy").length;
   const elitarneCount = selectedUnits.filter(u => u.type === "elitarny").length;
   const rzadkieCount = selectedUnits.filter(u => u.type === "rzadki").length;
@@ -430,18 +453,12 @@ const maxMag = Math.floor(gamePoints / 500);
   const magCount = bohaterowieUnits.filter(u => u.type === "bohater_mag").length;
   const bohaterowieTotal = bohaterowieUnits.length;
 
-
-
-  // Count artifacts for Generał
   const generałUnits = bohaterowieUnits.filter(u => u.oddzial.typ?.toLowerCase().includes("generał"));
   const generałArtifacts = generałUnits.reduce((sum, u) => sum + (u.Artifacts?.length || 0), 0);
 
-  // Count banners for Grupa Dowódcza
   const grupaDowodczaUnits = bohaterowieUnits.filter(u => u.oddzial.typ?.toLowerCase().includes("grupa"));
   const grupaDowodczaBanners = grupaDowodczaUnits.reduce((sum, u) => sum + (u.Banners?.length || 0), 0);
 
-
-  // --- VALIDATION ---
   const bohaterowieValid =
     generałCount <= MAX_GENERAŁ &&
     grupaDowodczaCount >= minGrupa &&
@@ -451,7 +468,6 @@ const maxMag = Math.floor(gamePoints / 500);
     magCount <= maxMag &&
     bohaterowieTotal >= MIN_BOHATEROWIE_TOTAL;
 
-  // Update totalPoints calculation to include spells, items, artifacts, banners
   const totalPoints = selectedUnits.reduce(
     (sum, unit) =>
       sum +
@@ -472,11 +488,9 @@ const maxMag = Math.floor(gamePoints / 500);
     totalPoints <= gamePoints &&
     bohaterowieValid;
 
-  // Validation for items
   const canGenerałTakeItem = generałArtifacts < MAX_ARTIFACTS_PER_GENERAŁ;
   const canGrupaTakeBanner = areBannersAllowed(gamePoints) && grupaDowodczaBanners < MAX_BANNERS_TOTAL;
 
-  // Add missing handler for increasing unit count
   const handleIncreaseUnit = (id: string) => {
     setSelectedUnits((prev) =>
       prev.map((u) => {
@@ -488,7 +502,6 @@ const maxMag = Math.floor(gamePoints / 500);
     );
   };
 
-  // Add missing handler for decreasing unit count
   const handleDecreaseUnit = (id: string) => {
     setSelectedUnits((prev) =>
       prev.map((u) => {
@@ -500,12 +513,10 @@ const maxMag = Math.floor(gamePoints / 500);
     );
   };
 
-  // Add missing handler for removing unit
   const handleRemoveUnit = (id: string) => {
     setSelectedUnits((prev) => prev.filter((u) => u.id !== id));
   };
 
-  // Export handler: save data to localStorage and navigate
   const handleExportArmy = () => {
     const exportData = {
       selectedUnits,
@@ -527,11 +538,26 @@ const maxMag = Math.floor(gamePoints / 500);
       >
         {step === "setup" && (
           <div>
+            {/* Language switch button */}
+            <div className="mb-4">
+              <button
+                className={`px-3 py-1 rounded mr-2 ${lang === "pl" ? "bg-blue-600 text-white" : "bg-gray-200 text-black"}`}
+                onClick={() => setLang("pl")}
+              >
+                Polski
+              </button>
+              <button
+                className={`px-3 py-1 rounded ${lang === "en" ? "bg-blue-600 text-white" : "bg-gray-200 text-black"}`}
+                onClick={() => setLang("en")}
+              >
+                English
+              </button>
+            </div>
             <h2 className="font-bold text-lg mb-2 text-gray-900">
-              Ustawienia gry
+              {t("gameSettings")}
             </h2>
             <label className="mb-2 block">
-              Punkty gry:
+              {t("gamePoints")}:
               <input
                 type="number"
                 min={100}
@@ -545,7 +571,7 @@ const maxMag = Math.floor(gamePoints / 500);
               className="bg-blue-500 text-white px-4 py-2 rounded mt-2"
               onClick={handleSetupNext}
             >
-              Dalej
+              {t("next")}
             </button>
           </div>
         )}
@@ -555,6 +581,9 @@ const maxMag = Math.floor(gamePoints / 500);
             <FrakcjeList
               frakcjeNames={frakcjeNames}
               onSelect={handleFrakcjaClick}
+              lang={lang}
+              setLang={setLang}
+              t={t}
             />
           </>
         )}
@@ -562,7 +591,7 @@ const maxMag = Math.floor(gamePoints / 500);
         {step === "oddzialy" && selectedFrakcjaData && (
           <>
             <h2 className="font-bold text-lg mb-2 text-gray-900">
-              Oddziały frakcji: {selectedFrakcja}
+              {t("factionUnits")}: {selectedFrakcja}
             </h2>
 
             {/* Army special rules bullet points */}
@@ -573,12 +602,12 @@ const maxMag = Math.floor(gamePoints / 500);
                   onClick={() => setShowArmyRules(v => !v)}
                 >
                   {showArmyRules
-                    ? "Ukryj zasady armii"
-                    : "Pokaż zasady armii"}
+                    ? t("hideArmyRules")
+                    : t("showArmyRules")}
                 </button>
                 {showArmyRules && (
                   <div className="text-sm text-gray-500 mb-1">
-                    Zasady armii:
+                    {t("armyRules")}:
                     <ul className="list-disc ml-6">
                       {selectedFrakcjaData.special_rule.map((rule: string, i: number) => (
                         <li key={i}>{rule}</li>
@@ -600,7 +629,7 @@ const maxMag = Math.floor(gamePoints / 500);
             )}
 
             <h3 className="font-semibold mt-1 mb-1 text-gray-900">
-              Oddziały podstawowe (minimum {minPodstawowe} oddziały wymagane):
+              {t("basicUnits")} ({t("minimumRequiredUnits", { min: minPodstawowe })}):
             </h3>
             {podstawoweOddzialy.map((oddzial: Oddzial, idx: number) => (
               <OddzialCard
@@ -612,8 +641,7 @@ const maxMag = Math.floor(gamePoints / 500);
             ))}
 
             <h3 className="font-semibold mt-4 mb-1 text-gray-900">
-              Oddziały elitarne (minimum 2 oddziały w armii, maximum{" "}
-              {maxElitarne} oddziały):
+              {t("eliteUnits")} ({t("minimumEliteUnits", { max: maxElitarne })}):
             </h3>
             {elitarneOddzialy.map((oddzial: Oddzial, idx: number) => (
               <OddzialCard
@@ -630,7 +658,7 @@ const maxMag = Math.floor(gamePoints / 500);
             ))}
 
             <h3 className="font-semibold mt-4 mb-1 text-gray-900">
-              Oddziały rzadkie (max {maxRzadkie} w armii):
+              {t("rareUnits")} ({t("maxRareUnits", { max: maxRzadkie })}):
             </h3>
             {rzadkieOddzialy.map((oddzial: Oddzial, idx: number) => (
               <OddzialCard
@@ -647,7 +675,7 @@ const maxMag = Math.floor(gamePoints / 500);
             ))}
 
             <h3 className="font-semibold mt-4 mb-1 text-gray-900">
-              Oddziały unikalne (max {maxUnikalne} w armii):
+              {t("uniqueUnits")} ({t("maxUniqueUnits", { max: maxUnikalne })}):
             </h3>
             {unikalneOddzialy.map((oddzial: Oddzial, idx: number) => (
               <OddzialCard
@@ -664,21 +692,29 @@ const maxMag = Math.floor(gamePoints / 500);
             ))}
 
             <h3 className="font-semibold mt-4 mb-1 text-gray-900">
-              Bohaterowie:
+              {t("heroes")}:
             </h3>
             <div className="text-xs text-gray-600 mb-2">
-              Limit: {MAX_GENERAŁ} Generał, {minGrupa}-{maxGrupa} Grupa Dowódcza, {minCzempion}-{maxCzempion} Czempion, max {maxMag} Mag, min {MIN_BOHATEROWIE_TOTAL} bohaterowie w armii
+              {t("heroesLimit", {
+                maxGeneral: MAX_GENERAŁ,
+                minGroup: minGrupa,
+                maxGroup: maxGrupa,
+                minChampion: minCzempion,
+                maxChampion: maxCzempion,
+                maxMage: maxMag,
+                minHeroes: MIN_BOHATEROWIE_TOTAL,
+              })}
             </div>
             {!bohaterowieValid && (
               <div className="text-red-600 text-xs mb-2">
-                Naruszenie limitów bohaterów: 
-                {generałCount > MAX_GENERAŁ && " Tylko jeden Generał dozwolony."}
-                {grupaDowodczaCount < minGrupa && ` Minimum ${minGrupa} Grupa Dowódcza.`}
-                {grupaDowodczaCount > maxGrupa && ` Maksimum ${maxGrupa} Grupa Dowódcza.`}
-                {czempionCount < minCzempion && ` Minimum ${minCzempion} Czempion.`}
-                {czempionCount > maxCzempion && ` Maksimum ${maxCzempion} Czempion.`}
-                {magCount > maxMag && ` Maksimum ${maxMag} Mag.`}
-                {bohaterowieTotal < MIN_BOHATEROWIE_TOTAL && ` Minimum ${MIN_BOHATEROWIE_TOTAL} bohaterowie w armii.`}
+                {t("heroesLimitViolation")}
+                {generałCount > MAX_GENERAŁ && " " + t("onlyOneGeneralAllowed")}
+                {grupaDowodczaCount < minGrupa && " " + t("minimumGroupRequired", { minGroup: minGrupa })}
+                {grupaDowodczaCount > maxGrupa && " " + t("maximumGroupAllowed", { maxGroup: maxGrupa })}
+                {czempionCount < minCzempion && " " + t("minimumChampionRequired", { minChampion: minCzempion })}
+                {czempionCount > maxCzempion && " " + t("maximumChampionAllowed", { maxChampion: maxCzempion })}
+                {magCount > maxMag && " " + t("maximumMageAllowed", { maxMage: maxMag })}
+                {bohaterowieTotal < MIN_BOHATEROWIE_TOTAL && " " + t("minimumHeroesRequired", { minHeroes: MIN_BOHATEROWIE_TOTAL })}
               </div>
             )}
             {bohaterowie.map((oddzial: Oddzial, idx: number) => {
@@ -686,9 +722,7 @@ const maxMag = Math.floor(gamePoints / 500);
               if (oddzial.typ?.toLowerCase().includes("generał") && generałCount >= MAX_GENERAŁ) addDisabled = true;
               if (oddzial.typ?.toLowerCase().includes("grupa") && grupaDowodczaCount >= maxGrupa) addDisabled = true;
               if (oddzial.typ?.toLowerCase().includes("czempion") && czempionCount >= maxCzempion) addDisabled = true;
-              // ENFORCE mage limit
               if (oddzial.typ?.toLowerCase().includes("mag") && magCount >= maxMag) addDisabled = true;
-              // Allow items for Generał and Grupa Dowódcza if limits allow
               let canTakeItems = false;
               if (oddzial.typ?.toLowerCase().includes("generał")) {
                 canTakeItems = true;
@@ -710,7 +744,7 @@ const maxMag = Math.floor(gamePoints / 500);
               className="mt-4 bg-gray-100 text-black border border-black font-mono font-semibold px-2 py-1 rounded transition hover:bg-gray-200 w-auto text-sm"
               onClick={handleBack}
             >
-              Powrót do frakcji
+              {t("backToFaction")}
             </button>
           </>
         )}
@@ -718,10 +752,9 @@ const maxMag = Math.floor(gamePoints / 500);
 
       {/* Right column */}
       <div className="flex flex-col w-1/2">
-        {/* Editable points input always visible */}
         <div className="mb-2 flex items-center gap-10">
           <label className="font-semibold text-gray-900">
-            Punkty gry:
+            {t("gamePoints")}:
             <input
               type="number"
               min={100}
@@ -754,14 +787,14 @@ const maxMag = Math.floor(gamePoints / 500);
           onAddBanners={handleAddBanner}
           onRemoveBanners={handleRemoveBanner}
           canTakeItems={canTakeItems}
+          lang={lang}
         />
-        {/* Export button */}
         <button
           className="bg-purple-600 text-white px-4 py-2 rounded font-bold mt-4"
           onClick={handleExportArmy}
           disabled={selectedUnits.length === 0}
         >
-          Eksportuj armię (PDF/JPG)
+          {t("exportArmy")}
         </button>
       </div>
     </div>

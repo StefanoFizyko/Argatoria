@@ -1,0 +1,39 @@
+{
+  "Banners": [
+    {
+      "nazwa": "Sztandar Chwały",
+      "koszt": 10,
+      "opis": "Armia zawsze wygrywa remisy w Teście Inicjatywy. Jeśli przeciwnik również posiada tę zasadę, remisy muszą być przerzucane."
+    },
+    {
+      "nazwa": "Sztandar Bitewny",
+      "koszt": 3,
+      "opis": "Zasięg zdolności Grupy Dowódczej to 10 cm."
+    },
+    {
+      "nazwa": "Błogosławiony Sztandar",
+      "koszt": 8,
+      "opis": "Armia dysponuje 1 modlitwą na cykl więcej."
+    },
+    {
+      "nazwa": "Sztandar Odwagi",
+      "koszt": 1,
+      "opis": "Oddział z dołączoną Grupą Dowódczą posiada zasadę Nieustraszony."
+    },
+    {
+      "nazwa": "Sztandar Uporu",
+      "koszt": 4,
+      "opis": "Oddział z dołączoną Grupą Dowódczą nigdy nie może stracić bonusów do szarży, walki lub niezależnych, gdy szarżuje na hordę lub oddział pozbawiający bonusów."
+    },
+    {
+      "nazwa": "Sztandar Rozwagi",
+      "koszt": 2,
+      "opis": "Po nieudanej szarży oddział z dołączoną Grupą Dowódczą nie wykonuje ruchu w kierunku wroga i nie może zostać obrócony."
+    },
+    {
+      "nazwa": "Sztandar Zniszczenia",
+      "koszt": 3,
+      "opis": "Podczas walki oddział z dołączoną Grupą Dowódczą nie pozwala wrogowi wykonywać testów pancerza lub ochrony. Dodatkowo otrzymuje 4 ataki za atakowanie wroga od boku lub tyłu do już posiadanych bonusów."
+    }
+  ]
+}

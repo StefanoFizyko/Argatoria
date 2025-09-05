@@ -1,0 +1,54 @@
+{
+  "Spells": [
+    {
+      "nazwa": "Kula Ognia",
+      "koszt": 7,
+      "opis": "Wybierz dowolny wrogi oddział (nie model pojedynczy) w promieniu 20 cm, który jest niezaangażowany w walkę. Rzuć k6 - wynik 3 lub mniej oznacza udany czar. Dwie podstawki z tego oddziału muszą wykonać Test Paniki."
+    },
+    {
+      "nazwa": "Zamieć",
+      "koszt": 6,
+      "opis": "Wybierz dowolny wrogi oddział w promieniu 30 cm, który nie jest zaangażowany w walkę. Rzuć k6 - wynik 4 lub mniej oznacza udany czar. Wrogi oddział może zostać dowolnie przesunięty o 5 cm w przód lub w tył."
+    },
+    {
+      "nazwa": "Groza",
+      "koszt": 2,
+      "opis": "Wybierz dowolny wrogi oddział w promieniu 30 cm. Rzuć k6 - wynik 4 lub mniej oznacza udany czar. Wrogi oddział na początku kolejnego cyklu musi wykonać Test Zimnej Krwi. Nieudany test oznacza, że traci Kość Akcji."
+    },
+    {
+      "nazwa": "Wola Walki",
+      "koszt": 8,
+      "opis": "Wybierz dowolny przyjazny oddział w promieniu 20 cm, niezaangażowany w walkę. Rzuć k6 - wynik 3 lub mniej oznacza udany czar. Oddział może dowolnie wykonać rotację i być przemieszczony o 15 cm + k6."
+    },
+    {
+      "nazwa": "Szepty Bogów",
+      "koszt": 3,
+      "opis": "Wybierz Generała w promieniu 30 cm. Rzuć k6 - wynik 4 lub mniej oznacza udany czar. Wybierz modyfikator +2 lub -2. Wybrany Generał otrzyma go podczas kolejnej Fazy Inicjatywy."
+    },
+    {
+      "nazwa": "Piorun",
+      "koszt": 7,
+      "opis": "Wybierz dowolny niezaangażowany w walkę wrogi oddział lub model pojedynczy na polu bitwy. Rzuć k6 – wynik 2 lub mniej oznacza udany czar. Wybrany oddział otrzymuje trzy rany. Jeśli jednostka ma dowolny rodzaj ochrony, pancerza lub jest na większej podstawce niż 20 mm, otrzymuje 4 rany. Przed Piorunem nie chronią żadne pancerze."
+    },
+    {
+      "nazwa": "Podmuch Śmierci",
+      "koszt": 4,
+      "opis": "Wybierz do trzech dowolnych oddziałów wroga (ale nie modeli pojedynczych) posiadających rany w promieniu 40 cm. Wykonaj rzut k6. Wynik 4 lub mniej oznacza, że wytypowane oddziały muszą zdjąć podstawkę wraz z kostką oznaczającą rany."
+    },
+    {
+      "nazwa": "Zamroczenie",
+      "koszt": 2,
+      "opis": "Wybierz dowolny oddział lub model pojedynczy w promieniu 30 cm. Rzuć k6 – wynik 2 lub mniej oznacza udany czar. W kolejnym cyklu oddział lub model pojedynczy może wykonywać ruch lub szarżę tylko na odległość k6 lub 2k6 cm bez dodawania cechy M. Jeśli szarża oddziału była nieudana, pozostaje on w miejscu, ale może być obrócony przez przeciwnika do 90 stopni. "
+    },
+    {
+      "nazwa": "Zemsta",
+      "koszt": 6,
+      "opis": "Wybierz dowolny zaangażowany w walkę oddział lub model pojedynczy w promieniu 30 cm. Rzuć k6 – wynik 4 lub mniej oznacza udany czar. Wybrany oddział może natychmiast za każdą 1 straconą ranę w tym cyklu wykonać 1 atak."
+    },
+    {
+      "nazwa": "Kajdany Bólu",
+      "koszt": 9,
+      "opis": "Wybierz dowolny wrogi model pojedynczy w promieniu 30 cm. Rzuć k6 – wynik 3 lub mniej oznacza udany czar. Model musi natychmiast wykonać test k6 za każdy posiadany punkt W. Wynik 5 lub 6 oznacza, że traci 1 punkt W."
+    }
+  ]
+}

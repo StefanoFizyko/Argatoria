@@ -1,0 +1,29 @@
+{
+  "Artifacts": [
+    {
+      "nazwa": "Ostrze Pogardy",
+      "koszt": 2,
+      "opis": "Generał wspiera oddział 7 atakami zamiast 6."
+    },
+    {
+      "nazwa": "Mityczny Hełm Przeznaczenia",
+      "koszt": 1,
+      "opis": "Generał po zetknięciu z wrogim oddziałem ginie tylko przy wyniku 1 i pozwala dołączyć się do oddziału w 30 cm."
+    },
+    {
+      "nazwa": "Róg Haburisa",
+      "koszt": 5,
+      "opis": "Zasięg wydawania rozkazów przez Generała jest powiększony o 10 cm."
+    },
+    {
+      "nazwa": "Zatrute Ostrze Katakhanes",
+      "koszt": 4,
+      "opis": "Jeśli Generał jest dołączony do oddziału i podczas walki podstawka wrogiego oddziału została zraniona, jest ona zdejmowana jako zniszczona. Podczas walki z modelami pojedynczymi pozwala wykonać do 6 przerzutów podczas Testów Ranienia."
+    },
+    {
+      "nazwa": "Bastard Świętego Gardona",
+      "koszt": 3,
+      "opis": "Generał dołączony do oddziału pozwala podczas Testów WS wykonać przerzut wszystkich wyników 6, jeśli wróg posiada zasadę Nieustraszony lub do wrogiego oddziału jest dołączony Generał lub Czempion."
+    }
+  ]
+}

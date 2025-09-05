@@ -1,7 +1,8 @@
 import { Oddzial } from "./Oddzialcard";
-import { useMemo } from "react";
+import { useMemo, useState, useCallback } from "react";
 import { MAX_ARTIFACTS_PER_GENERAŁ, MAX_BANNERS_TOTAL, areBannersAllowed } from "./limits";
-
+import pl from "./data/pl.json";
+import en from "./data/en.json";
 
 type SelectedUnit = {
   oddzial: Oddzial;
@@ -49,6 +50,7 @@ type Props = {
   onAddBanners?: (unitId: string, banner: { nazwa: string; koszt: number }) => void;
   onRemoveBanners?: (unitId: string, bannerName: string) => void;
   Banners?: { nazwa: string; koszt: number }[];
+  lang: "pl" | "en"; // <-- ADD THIS LINE
 };
 
 export function SelectedUnitsList({
@@ -72,7 +74,28 @@ export function SelectedUnitsList({
   onRemoveArtifacts,
   onAddBanners,
   onRemoveBanners,
+  lang, // <-- add lang here
 }: Props) {
+
+// Add index signature to allow string indexing
+type TranslationMap = { [key: string]: string };
+const translations: { pl: TranslationMap; en: TranslationMap } = { pl, en };
+
+// Use the lang prop in your translation function:
+const translate = useCallback(
+  (key: string, params?: Record<string, string | number>) => {
+    let str = translations[lang as "pl" | "en"][key] || key;
+    if (params) {
+      Object.entries(params).forEach(([k, v]) => {
+        str = str.replace(`{${k}}`, String(v));
+      });
+    }
+    return str;
+  },
+  [lang]
+); // Translation function
+
+
   // Group units by type
   const groupedUnits = useMemo(() => {
     const typeOrder = [
@@ -106,20 +129,19 @@ export function SelectedUnitsList({
   return (
     <div>
       <div className="mt-4 font-bold text-xl text-gray-900">
-        Suma punktów: {totalPoints} / {gamePoints}
+        {translate("pointsSummaryFull", { totalPoints, gamePoints })}
       </div>
       {!canStartGame && (
         <div className="text-red-600 font-semibold">
-          Musisz wybrać wymaganą liczbę oddziałów podstawowych i elitarnych. Suma
-          punktów nie może przekraczać limitu gry.
+          {translate("mustSelectRequiredUnits")}
         </div>
       )}
       <div className="flex flex-col gap-2 items-start w-full max-w-md">
         <h2 className="font-bold text-lg mb-2 text-gray-900">
-          Wybrane jednostki
+          {translate("selectedUnitsHeader")}
         </h2>
         {groupedUnits.length === 0 ? (
-          <div className="text-gray-500">Brak wybranych jednostek.</div>
+          <div className="text-gray-500">{translate("noUnitsSelected")}</div>
         ) : (
           groupedUnits.map((unit) => {
             // DEBUG: log unit type
@@ -162,10 +184,11 @@ export function SelectedUnitsList({
                  <div className="flex items-center justify-between">
                    <span className="font-bold w-8 text-center">{unit.count}</span>
                    <span className="mx-2 flex-1 truncate">
-                     {unit.oddzial.nazwa}
+                     {/* Use translated unit name if available */}
+                     {translate(unit.oddzial.nazwa) || unit.oddzial.nazwa}
                    </span>
                    <span className="font-semibold text-blue-700 w-16 text-center">
-                     {unit.count * Number(unit.oddzial.punkty)} pkt
+                     {unit.count * Number(unit.oddzial.punkty)} {translate("unitPoints")}
                    </span>
                    <button
                      className={`mx-1 bg-green-500 hover:bg-green-600 text-white font-bold rounded w-7 h-7 flex items-center justify-center ${
@@ -175,7 +198,7 @@ export function SelectedUnitsList({
                      }`}
                      onClick={() => onIncreaseUnit(unit.id)}
                      disabled={unit.count >= maxSize}
-                     title="Dodaj jednostkę"
+                     title={translate("add")}
                    >
                      +
                    </button>
@@ -187,14 +210,14 @@ export function SelectedUnitsList({
                      }`}
                      onClick={() => onDecreaseUnit(unit.id)}
                      disabled={unit.count <= minSize}
-                     title="Odejmij jednostkę"
+                     title={translate("subtract")}
                    >
                      –
                    </button>
                    <button
                      className="mx-1 bg-red-500 hover:bg-red-600 text-white font-bold rounded w-7 h-7 flex items-center justify-center"
                      onClick={() => onRemoveUnit(unit.id)}
-                     title="Usuń jednostkę"
+                     title={translate("delete")}
                    >
                      ×
                    </button>
@@ -203,12 +226,12 @@ export function SelectedUnitsList({
                  {/* If the unit is a mage, show spell management */}
                  {unit.type === "bohater_mag" && onAddSpells && onRemoveSpells && Spells && (
                    <div className="ml-6 mt-2 mb-2 text-sm w-full">
-                     <div className="font-semibold">Zaklęcia:</div>
+                     <div className="font-semibold">{translate("spellsHeader")}</div>
                      <ul className="ml-4 list-disc">
                        {(unit.Spells || []).map((spell) => (
                          <li key={spell.nazwa} className="flex justify-between">
                            <span>
-                             {spell.nazwa} ({spell.koszt} pkt)
+                             {translate(spell.nazwa) || spell.nazwa} ({spell.koszt} {translate("unitPoints")})
                            </span>
                            <button
                              className="ml-2 text-red-600"
@@ -222,8 +245,8 @@ export function SelectedUnitsList({
                      {/* Spell limitations messages */}
                      {(spellLimitReached || spellPointsLimitReached) && (
                        <div className="text-red-600 text-xs mb-1">
-                         {spellLimitReached && `Limit zaklęć (${maxSpells}) osiągnięty.`}
-                         {spellPointsLimitReached && `Limit punktów zaklęć (${maxSpellPoints}) osiągnięty.`}
+                         {spellLimitReached && translate("spellLimitReachedMsg", { maxSpells })}
+                         {spellPointsLimitReached && translate("spellPointsLimitReachedMsg", { maxSpellPoints })}
                        </div>
                      )}
                      {/* Filter out already chosen spells */}
@@ -239,10 +262,10 @@ export function SelectedUnitsList({
                          e.target.value = ""; // reset select
                        }}
                      >
-                       <option value="">Dodaj zaklęcie...</option>
+                       <option value="">{translate("addSpellOption")}</option>
                        {Spells.filter(s => !(unit.Spells || []).some(us => us.nazwa === s.nazwa)).map((s) => (
                          <option key={s.nazwa} value={s.nazwa}>
-                           {s.nazwa} ({s.koszt} pkt)
+                           {translate(s.nazwa) || s.nazwa} ({s.koszt} {translate("unitPoints")})
                          </option>
                        ))}
                      </select>
@@ -253,10 +276,10 @@ export function SelectedUnitsList({
                  {Artifacts && onAddArtifacts && onRemoveArtifacts && unit.type === "bohater_generał" && (
                    <div className="ml-6 mt-2 mb-2 text-sm w-full">
                      <div className="font-semibold flex items-center gap-2">
-                       Artefakty:
+                       {translate("artifactsHeader")}
                        {artifactCount >= MAX_ARTIFACTS_PER_GENERAŁ && (
                          <span className="text-red-600 text-xs">
-                           Limit ({MAX_ARTIFACTS_PER_GENERAŁ}) osiągnięty
+                           {translate("artifactLimitReachedMsg", { maxArtifacts: MAX_ARTIFACTS_PER_GENERAŁ })}
                          </span>
                        )}
                      </div>
@@ -264,7 +287,7 @@ export function SelectedUnitsList({
                        {(unit.Artifacts || []).map((artifact) => (
                          <li key={artifact.nazwa} className="flex justify-between">
                            <span>
-                             {artifact.nazwa} ({artifact.koszt} pkt)
+                             {translate(artifact.nazwa) || artifact.nazwa} ({artifact.koszt} {translate("unitPoints")})
                            </span>
                            <button
                              className="ml-2 text-red-600"
@@ -287,10 +310,10 @@ export function SelectedUnitsList({
                        }}
                        defaultValue=""
                      >
-                       <option value="">Dodaj artefakt...</option>
+                       <option value="">{translate("addArtifactOption")}</option>
                        {Artifacts.map((a) => (
                          <option key={a.nazwa} value={a.nazwa}>
-                           {a.nazwa} ({a.koszt} pkt)
+                           {translate(a.nazwa) || a.nazwa} ({a.koszt} {translate("unitPoints")})
                          </option>
                        ))}
                      </select>
@@ -301,19 +324,19 @@ export function SelectedUnitsList({
                  {Banners && onAddBanners && onRemoveBanners && unit.type === "bohater_grupa" && (
                    <div className="ml-6 mt-2 mb-2 text-sm w-full">
                      <div className="font-semibold flex items-center gap-2">
-                       Sztandary:
+                       {translate("bannersHeader")}
                        {!areBannersAllowed(gamePoints) && (
-                         <span className="text-red-600 text-xs">Dostępne od 1000 pkt</span>
+                         <span className="text-red-600 text-xs">{translate("bannerAvailableFromMsg")}</span>
                        )}
                        {areBannersAllowed(gamePoints) && totalArmyBanners >= MAX_BANNERS_TOTAL && (
-                         <span className="text-red-600 text-xs">Limit ({MAX_BANNERS_TOTAL}) armii osiągnięty</span>
+                         <span className="text-red-600 text-xs">{translate("bannerArmyLimitReachedMsg", { maxBanners: MAX_BANNERS_TOTAL })}</span>
                        )}
                      </div>
                      <ul className="ml-4 list-disc">
                        {(unit.Banners || []).map((banner) => (
                          <li key={banner.nazwa} className="flex justify-between">
                            <span>
-                             {banner.nazwa} ({banner.koszt} pkt)
+                             {translate(banner.nazwa) || banner.nazwa} ({banner.koszt} {translate("unitPoints")})
                            </span>
                            <button
                              className="ml-2 text-red-600"
@@ -336,10 +359,10 @@ export function SelectedUnitsList({
                        }}
                        defaultValue=""
                      >
-                       <option value="">Dodaj sztandar...</option>
+                       <option value="">{translate("addBannerOption")}</option>
                        {Banners.map((b) => (
                          <option key={b.nazwa} value={b.nazwa}>
-                           {b.nazwa} ({b.koszt} pkt)
+                           {translate(b.nazwa) || b.nazwa} ({b.koszt} {translate("unitPoints")})
                          </option>
                        ))}
                      </select>
@@ -349,12 +372,12 @@ export function SelectedUnitsList({
                  {/* Regular magic items (kept under showItems so spells/items permission still respected) */}
                  {showItems && (
                    <div className="ml-6 mt-2 mb-2 text-sm w-full">
-                     <div className="font-semibold">Magiczne Przedmioty:</div>
+                     <div className="font-semibold">{translate("magicItemsHeader")}</div>
                      <ul className="ml-4 list-disc">
                        {(unit.Items || []).map((item) => (
                          <li key={item.nazwa} className="flex justify-between">
                            <span>
-                             {item.nazwa} ({item.koszt} pkt)
+                             {translate(item.nazwa) || item.nazwa} ({item.koszt} {translate("unitPoints")})
                            </span>
                            <button
                              className="ml-2 text-red-600"
@@ -368,8 +391,8 @@ export function SelectedUnitsList({
                      {/* Item limitations messages */}
                      {(itemLimitReached || itemPointsLimitReached) && (
                        <div className="text-red-600 text-xs mb-1">
-                         {itemLimitReached && `Limit przedmiotów (${maxItems}) osiągnięty.`}
-                         {itemPointsLimitReached && `Limit punktów przedmiotów (${maxItemPoints}) osiągnięty.`}
+                         {itemLimitReached && translate("itemLimitReachedMsg", { maxItems })}
+                         {itemPointsLimitReached && translate("itemPointsLimitReachedMsg", { maxItemPoints })}
                        </div>
                      )}
                      {/* Filter out already chosen items */}
@@ -385,10 +408,10 @@ export function SelectedUnitsList({
                          e.target.value = ""; // reset select
                        }}
                      >
-                       <option value="">Dodaj przedmiot...</option>
+                       <option value="">{translate("addItemOption")}</option>
                        {Items.filter(i => !(unit.Items || []).some(ui => ui.nazwa === i.nazwa)).map((i) => (
                          <option key={i.nazwa} value={i.nazwa}>
-                           {i.nazwa} ({i.koszt} pkt)
+                           {translate(i.nazwa) || i.nazwa} ({i.koszt} {translate("unitPoints")})
                          </option>
                        ))}
                      </select>
@@ -401,7 +424,7 @@ export function SelectedUnitsList({
 
          {canStartGame && (
            <button className="bg-blue-600 text-white px-4 py-2 rounded font-bold mt-2">
-             Rozpocznij grę
+             {translate("startGameButton")}
            </button>
          )}
        </div>

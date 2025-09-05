@@ -1,5 +1,5 @@
 "use client";
-import { useState, useMemo, useCallback } from "react";
+import {useEffect, useState, useMemo, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import unitsData from "./data/units2.json";
 import SpellsData from "./data/spells.json";
@@ -9,6 +9,7 @@ import BannersData from "./data/magical_banners.json";
 import { Oddzial, OddzialCard } from "./Oddzialcard";
 import { FrakcjeList } from "./FrakcjeList";
 import { SelectedUnitsList } from "./selectedUnitsList";
+
 import {
   getMinPodstawowe,
   getMaxRzadkie,
@@ -65,6 +66,27 @@ export default function Home() {
   const [showArmyRules, setShowArmyRules] = useState(false);
   const router = useRouter();
 
+useEffect(() => {
+  const savedUnits = localStorage.getItem("selectedUnits");
+  const savedFrakcja = localStorage.getItem("selectedFrakcja");
+  const savedStep = localStorage.getItem("step");
+  if (savedUnits) setSelectedUnits(JSON.parse(savedUnits));
+  if (savedFrakcja) setSelectedFrakcja(savedFrakcja);
+  if (savedStep) setStep(savedStep as "setup" | "frakcja" | "oddzialy");
+}, []); // load once on mount
+
+useEffect(() => {
+  localStorage.setItem("selectedUnits", JSON.stringify(selectedUnits));
+}, [selectedUnits]); // save on changes
+
+useEffect(() => {
+  if (selectedFrakcja) localStorage.setItem("selectedFrakcja", selectedFrakcja);
+}, [selectedFrakcja]); // save on changes
+
+useEffect(() => {
+  localStorage.setItem("step", step);
+}, [step]); // save on changes
+
   const frakcjeNames = useMemo(() => Object.keys(unitsData.frakcje ?? {}), []);
   const selectedFrakcjaData = useMemo(
     () => selectedFrakcja ? ((unitsData.frakcje as unknown) as FrakcjeData)[selectedFrakcja] : null,
@@ -105,7 +127,9 @@ export default function Home() {
   const handleFrakcjaClick = (frakcja: string) => {
     setSelectedFrakcja(frakcja);
     setStep("oddzialy");
-    setSelectedUnits([]);
+    setSelectedUnits((prev) =>
+      selectedFrakcja === frakcja ? prev : []
+    );
   };
 
   const handleBack = () => {

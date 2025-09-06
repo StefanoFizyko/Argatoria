@@ -1,13 +1,13 @@
 {
 	"frakcje": {
 		"Arox": {
-			"special_rule": "Gorąca Krew: ",
+			"special_rule": "Hot Blood: ",
 			"flavor_text": [
-				"Armia Arox może wykonać przerzut Testu Inicjatywy."
+				"The Arox army may re-roll an Initiative Test"
 			],
 			"oddziały podstawowe": [
 				{
-					"nazwa": "Liagulanie",
+					"nazwa": "Liagulians",
 					"punkty": "9",
 					"minimal_unit_size": 4,
 					"maximum_unit_size": 16,
@@ -19,14 +19,14 @@
 					"_A": "2",
 					"_W": "2",
 					"_zasady_specjalne": [
-						"Grom Włóczni: liagulanie zawsze atakują również drugim szeregiem",
-						"Wierni: Podczas modlitw otrzymują bonus +1 do LD"
+						"Spear Storm: liagulians always attack with the second rank",
+						"Faithful: When praying, they receive a +1 to LD"
 					]
 				}
 			],
 			"oddziały elitarne": [
 				{
-					"nazwa": "Reptilianie",
+					"nazwa": "Reptilians ",
 					"punkty": "13",
 					"minimal_unit_size": 4,
 					"maximum_unit_size": 16,
@@ -38,12 +38,12 @@
 					"_A": "2",
 					"_W": "2",
 					"_zasady_specjalne": [
-						"Żelazna Dyscyplina: Rozkazy wydawane Reptilianom mogą być przerzucone, a 1 oznacza darmowy rozkaz.",
-						"Zwinni: Zawsze mogą wykonać przerzut jednej k6 podczas ruchu lub szarży."
+						"Iron Discipline: Orders issued to this unit can be rerolled, and each score of 1 means a free order",
+						"Agile: This unit can always re-roll one d6 when moving or charging"
 					]
 				},
 				{
-					"nazwa": "Repsolianie",
+					"nazwa": "Repsolians",
 					"punkty": "15",
 					"minimal_unit_size": 4,
 					"maximum_unit_size": 16,
@@ -55,12 +55,12 @@
 					"_A": "2",
 					"_W": "2",
 					"_zasady_specjalne": [
-						"Bitewna Inspiracja: Bohater dołączony do tego oddziału daje +2 dodatkowe ataki do puli.",
-						"Wola Walki: Jeśli oddział Repsolian zniszczył oddział wroga, może wykonać ruch do 10 cm zamiast do 5 cm."
+						"Battle Inspiration: A hero attached to this unit gives +2 additional attacks to the pool",
+						"Will to Fight: If this unit destroyed an enemy unit, it can move up to 10 cm instead of 5 cm"
 					]
 				},
 				{
-					"nazwa": "Uświęceni",
+					"nazwa": "The Sanctified",
 					"punkty": "16",
 					"minimal_unit_size": 4,
 					"maximum_unit_size": 16,
@@ -72,15 +72,15 @@
 					"_A": "2",
 					"_W": "2",
 					"_zasady_specjalne": [
-						"Zaciekłość: Podczas Testu Ranienia za każdą 1 można wykonać dodatkowe dwa testy k6 na ranienie. Dodatkowe Testy Ranienia i uzyskane 1 nie generują kolejnych.",
-						"Wierni: Podczas modlitw otrzymują bonus +1 do LD.",
-						"Złoty Pancerz: Każde obrażenie, które zostało zadane temu oddziałowi, może być zniwelowane przez niezwykły pancerz. Wykonaj rzut k6. Wynik 2 lub mniej oznacza, że obrażenie zostało zniwelowane."
+						"Fierce: For each score of 1 in the Wound Test, this unit may roll 2 additional d6 for wounding. The obtained scores do not generate the new ones.",
+						"Faithful: When praying, they receive a +1 to LD.",
+						"Gold Armour: Each Wound dealt to this unit can be cancelled by an exceptional armour. Roll a d6. A score of 2 or less means a cancelled Wound"
 					]
 				}
 			],
 			"oddziały rzadkie": [
 				{
-					"nazwa": "Ropuchoni",
+					"nazwa": "Ropuchons",
 					"punkty": "16",
 					"minimal_unit_size": 4,
 					"maximum_unit_size": 16,
@@ -92,11 +92,11 @@
 					"_A": "2",
 					"_W": "2",
 					"_zasady_specjalne": [
-						"Trujące Splunięcie: Po rozstrzygnięciu ataków Ropuchonów wybierz wrogi oddział, który się z nimi styka. Wykonaj rzut k6 za każdą podstawkę w oddziale Ropuchonów. Przeciwnik musi wykonać Test Paniki za każdą uzyskaną przez ciebie 1 i 2."
+						" Poisonous Spit: After resolving the Ropuchons’ attacks, select an enemy unit that is in base contact with them. Roll a d6 for each base in the Ropuchons unit. The opponent must take a Panic Test for each 1 and 2 you scored."
 					]
 				},
 				{
-					"nazwa": "Trygodrony",
+					"nazwa": "Trygodrons",
 					"punkty": "20",
 					"minimal_unit_size": 4,
 					"maximum_unit_size": 16,
@@ -108,13 +108,13 @@
 					"_A": "2",
 					"_W": "3",
 					"_zasady_specjalne": [
-						"Nieczułość: Test Paniki wykonywany przez ten oddział jest nieudany tylko po uzyskaniu wyniku 6.",
-						"Kreatura: Oddział nie może wykonywać modlitw.",
-						"Rozszarpanie: Oddział podczas szarży posiada WS 4."
+						"Immunity: When this unit takes a Panic Test, it is failed only on a score of 6",
+						"Creature: This unit cannot pray",
+						"Tearing: When charging, this unit has WS 4"
 					]
 				},
 				{
-					"nazwa": "Desauros ze Słonecznym Monolitem",
+					"nazwa": "Desauros with Sun Monolith",
 					"punkty": "68",
 					"minimal_unit_size": 1,
 					"maximum_unit_size": 1,
@@ -126,15 +126,15 @@
 					"_A": "7",
 					"_W": "7",
 					"_zasady_specjalne": [
-						"Nieustraszony: Zawsze zdaje Test Zimnej Krwi oraz Test Paniki.",
-						"Pierwotny Szał: Podczas szarży Desauros musi wykonać test k6, żeby sprawdzić, czy wpadnie w szał. Wynik 2 lub mniej oznacza, że Desauros zyskuje +3 Ataki.",
-						"Słoneczny Monolit: Za każdy stracony punkt W Desaurosa podczas walki wykonaj rzut k6. Wynik 2 lub mniej oznacza, że wybrany oddział lub model pojedynczy w promieniu 20 cm otrzymuje 2 rany."
+						"Fearless: This unit always passes a Cold Blood Test and a Panic Test",
+						"Primal Rampage: When charging, Desauros must take a d6 test to see if it goes berserk. A score of 2 or less means Desauros gains +3 Attacks",
+						"Sun Monolith: Roll a d6 for each Wound Desauros lost in combat. A score of 2 or less means that the chosen unit or single model within 20 cm is dealt 2 Wounds"
 					]
 				}
 			],
 			"oddziały unikalne": [
 				{
-					"nazwa": "Złota Straż",
+					"nazwa": "Golden Guard",
 					"punkty": "19",
 					"minimal_unit_size": 4,
 					"maximum_unit_size": 16,
@@ -146,8 +146,8 @@
 					"_A": "2",
 					"_W": "2",
 					"_zasady_specjalne": [
-						"Złoty Pancerz: Każde obrażenie, które zostało zadane temu oddziałowi, może być zniwelowane przez niezwykły pancerz. Wykonaj rzut k6. Wynik 2 lub mniej oznacza, że obrażenie zostało zniwelowane.",
-						"Trujące Splunięcie: Po rozstrzygnięciu walki Złotej Straży wybierz wrogi oddział, który się z nimi styka. Wykonaj rzut k6 za każdą podstawkę w oddziale Ropuchonów. Przeciwnik musi wykonać Test Paniki za każdą uzyskaną przez ciebie 1 i 2."
+						"Poisonous Spit: After resolving the Ropuchons's attacks, select an enemy unit that is in base contact with them. Roll a d6 for each base in the Ropuchons unit. The opponent must take a Panic Test for each 1 and 2 you scored.",
+						"Gold Armour: Each Wound dealt to this unit can be cancelled by an exceptional armour. Roll a d6. A score of 2 or less means a cancelled Wound"
 					]
 				},
 				{
@@ -163,57 +163,63 @@
 					"_A": "5",
 					"_W": "5",
 					"_zasady_specjalne": [
-						"Żywa Katapulta: Raz na cykl Forgon może wykonać splunięcie do niezaangażowanego w walkę wroga na odległość 20 cm. Wykonaj rzut k6. Wynik 3 lub mniej oznacza, że wrogi oddział musi wykonać Test Paniki dla 3 podstawek.",
-						"Nieustraszony: Zawsze zdaje Test Zimnej Krwi oraz Test Paniki."
+						"Living Catapult: Once per cycle, Forgon can spit at an enemy within 20 cm that is not engaged in combat. Roll a d6. A score of 3 or less means the enemy unit must take a Panic Test for its 3 bases.",
+   						"Fearless: This unit always passes a Cold Blood Test and a Panic Test."
 					]
 				}
 			],
 			"bohaterowie": [
 				{
-					"nazwa": "Grupa Dowódcza",
+					"nazwa": "Command Group",
 					"punkty": "15",
-					"typ": "Grupa Dowódcza",
+					"typ": "Command Group",
 					"minimal_unit_size": 1,
     				"maximum_unit_size": 1,
 					"_zasady_specjalne": [
-						"Dołączona do oddziału wspiera go podczas walki 1 atakiem. Jeśli Grupa Dowódcza znajduje się w odległości 5 cm od przyjaznego oddziału, ten oddział może korzystać ze specjalnych zasad:",
-						"• Po deklaracji szarży, oddział zamiast dorzutu do szarży, jaki mu przysługuje, może (nawet pomimo utrudnień) wykonać dorzut 3k6 i wybrać dwa najlepsze wyniki.",
-						"• Oddział ma prawo wykonać specjalny ruch w bok lub do tyłu do 5 cm + k6 zamiast swojego normalnego ruchu lub szarży.",
-						"• Oddział może wykonać przerzut nieudanych Testów Paniki."
+						"If a Command Group is in base contact with a friendly unit, that unit receives 1 additional attack when attacking the enemy.",
+						"If the Command Group is within 5 cm of a friendly unit, that unit may use special rules:",
+						"– After declaring a charge, the unit can (even despite the obstacles) roll 3d6 for the charge instead of the roll that he could normally make, and choose 2 highest scores",
+						"– The unit can make a special move to the side or backwards up to 5 cm + d6 instead of its standard move or charge",
+						"– The unit can re-roll the failed Panic Tests"
 					]
 				},
 				{
-					"nazwa": "Czempion Słońca",
+					"nazwa": "Champion of Sun",
 					"punkty": "11",
-					"typ": "Czempion",
+					"typ": "Champion",
 					"minimal_unit_size": 1,
     				"maximum_unit_size": 1,
 					"_zasady_specjalne": [
-						"Jeśli Czempion Słońca styka się z przyjaznym oddziałem zaangażowanym w walkę z wrogim oddziałem, możesz wykonać test. Wynik 2 lub mniej oznacza, że w tym cyklu wrogi oddział musi przerzucić wszystkie 1 podczas Testu Walki Standardowej i Testu Ranienia w tym cyklu."
+						"Ability: If the Champion of Sun is attached to a friendly unit engaged in combat, you can make a d6 test. A score of 2 or less means that the enemy unit must re-roll all scores of 1 both in its Weapon Skill Test and Wound Test in this cycle.",
+						"Rules: If a Champion is in base contact with a friendly unit, that unit receives 4 additional attacks when attacking the enemy."
 					]
 				},
 				{
-					"nazwa": "Czempion Natury",
+					"nazwa": "Champion of Nature",
 					"punkty": "10",
-					"typ": "Czempion",
+					"typ": "Champion",
 					"minimal_unit_size": 1,
     				"maximum_unit_size": 1,
 					"_zasady_specjalne": [
-						"Aktywując jeden dowolny oddział w promieniu 10 cm od Czempiona Natury, możesz wykonać test. Wynik 4 lub mniej oznacza, że oddział może się dowolnie obrócić, a do zasięgu ruchu lub szarży może dodać 3 cm."					]
+						"Ability: When activating any unit within 10 cm of Champion of Nature, you can make a d6 test. A score of 4 or less means that unit may turn freely and may add 3 cm to its move or charge range.",
+						"Rules: If a Champion is in base contact with a friendly unit, that unit receives 4 additional attacks when attacking the enemy."
+					]
 				},
 				{
-					"nazwa": "Czempion Bogów",
+					"nazwa": "Champion of Gods",
 					"punkty": "14",
-					"typ": "Czempion",
+					"typ": "Champion",
 					"minimal_unit_size": 1,
     				"maximum_unit_size": 1,
 					"_zasady_specjalne": [
-						"Jeśli Czempion Bogów styka się z przyjaznym oddziałem zaangażowanym w walkę z wrogim oddziałem, wykonaj test przed walką. Wynik 3 lub mniej oznacza, że oddział ma prawo przerzucić wszystkie nieudane rzuty podczas Testu WS lub Testu Ranienia."					]
+						"Ability: If the Champion of Gods is attached to a friendly unit engaged in combat, you can make a d6 test before the fight. A score of 3 or less means that the unit can re-roll all failed scores during the Weapon Skill Test or the Wound Test.",
+						"Rules: If a Champion is in base contact with a friendly unit, that unit receives 4 additional attacks when attacking the enemy."
+					]
 				},
 				{
-					"nazwa": "Mistyk Odrodzonych",
+					"nazwa": "Mystic of the Reborn",
 					"punkty": "14",
-					"typ": "Mag",
+					"typ": "Mage",
 					"minimal_unit_size": 1,
     				"maximum_unit_size": 1,
 					"max_spell_value": 6,
@@ -221,14 +227,15 @@
 					"max_number_items": 2,
 					"max_items_value": 6,
 					"_zasady_specjalne": [
-						"Może korzystać z czarów i przedmiotów do 6 punktów.",
-						"Przyjazne oddziały w promieniu 10 cm mają szarżę M + 6 cm + k6 (zamiast M + 2k6)."
+						"Mystic of the Reborn: Each friendly unit within 10 cm of the Mystic of the Reborn has a charge range of M + 6 cm + d6 (instead of M + 2d6).",
+						"Mage: If a Mage is in base contact with a friendly unit, that unit receives 1 additional attack when attacking the enemy.",
+						"Each Mage gives an army an additional prayer in the cycle."
 					]
 				},
 				{
-					"nazwa": "Słoneczny Prorok",
+					"nazwa": "Sun Seer",
 					"punkty": "14",
-					"typ": "Mag",
+					"typ": "Mage",
 					"minimal_unit_size": 1,
     				"maximum_unit_size": 1,
 					"max_spell_value": 100,
@@ -236,20 +243,25 @@
 					"max_number_items": 2,
 					"max_items_value": 50,
 					"_zasady_specjalne": [
-						"Może korzystać z czarów i przedmiotów."
+						"Mage: If a Mage is in base contact with a friendly unit, that unit receives 1 additional attack when attacking the enemy.",
+						"Each Mage gives an army an additional prayer in the cycle."
 					]
 				},
 				{
-					"nazwa": "Sox’Augatir / Wiodący w Boju",
+					"nazwa": "Sox’Augatir / Battle Leader",
 					"punkty": "30",
-					"typ": "Generał",
+					"typ": "General",
 					"minimal_unit_size": 1,
     				"maximum_unit_size": 1,
 					"_LD": "3",
 					"_zasady_specjalne": [
-						"Dopóki Generał jest na polu bitwy, armia może wykorzystywać zasadę specjalną armii."
-					]
-				}
+						"As long as the General is on the battlefield, the army may use its special rule.",
+						"General: If the General is in base contact with a friendly unit, that unit receives 6 additional attacks when attacking the enemy.",
+						"Additionally, the General allows all friendly units within 10 cm to re-roll the Cold Blood Test",
+						"Issuing orders: At any point during the Heroes actions, the General may issue an order to a friendly unit. The chosen unit must be within 30 cm from the General, but it doesn’t have to be visible. Roll a d6. A score of 4 or less means a successful order. The unit that was issued an order by the General can immediately make any action as if it has just been activated.",
+"The general has three orders for the entire battle and can issue only one order per cycle"
+					]				
+}
 			]
 		},
 		"Sorgax": {
@@ -424,16 +436,17 @@
 			],
 			"bohaterowie": [
 				{
-					"nazwa": "Grupa Dowódcza",
+					"nazwa": "Command Group",
 					"punkty": "15",
-					"typ": "Grupa Dowódcza",
+					"typ": "Command Group",
 					"minimal_unit_size": 1,
     				"maximum_unit_size": 1,
 					"_zasady_specjalne": [
-						"Dołączona do oddziału wspiera go podczas walki 1 atakiem. Jeśli Grupa Dowódcza znajduje się w odległości 5 cm od przyjaznego oddziału, ten oddział może korzystać ze specjalnych zasad:",
-						"• Po deklaracji szarży, oddział zamiast dorzutu do szarży, jaki mu przysługuje, może (nawet pomimo utrudnień) wykonać dorzut 3k6 i wybrać dwa najlepsze wyniki.",
-						"• Oddział ma prawo wykonać specjalny ruch w bok lub do tyłu do 5 cm + k6 zamiast swojego normalnego ruchu lub szarży.",
-						"• Oddział może wykonać przerzut nieudanych Testów Paniki."
+						"If a Command Group is in base contact with a friendly unit, that unit receives 1 additional attack when attacking the enemy.",
+						"If the Command Group is within 5 cm of a friendly unit, that unit may use special rules:",
+						"– After declaring a charge, the unit can (even despite the obstacles) roll 3d6 for the charge instead of the roll that he could normally make, and choose 2 highest scores",
+						"– The unit can make a special move to the side or backwards up to 5 cm + d6 instead of its standard move or charge",
+						"– The unit can re-roll the failed Panic Tests"
 					]
 				},
 				{
@@ -494,7 +507,7 @@
 				{
 					"nazwa": "Abazatragon",
 					"punkty": "30",
-					"typ": "Generał",
+					"typ": "General",
 					"minimal_unit_size": 1,
     				"maximum_unit_size": 1,
 					"_LD": "2",
@@ -699,13 +712,13 @@
 			],
 			"bohaterowie": [
 				{
-					"nazwa": "Grupa Dowódcza",
+					"nazwa": "Command Group",
 					"punkty": "15",
-					"typ": "Grupa Dowódcza",
+					"typ": "Command Group",
 					"minimal_unit_size": 1,
 					"maximum_unit_size": 1,
 					"_zasady_specjalne": [
-						"Patrz dział Bohaterowie – Grupa Dowódcza."
+						"Patrz dział Bohaterowie – Command Group."
 					]
 				},
 				{
@@ -952,13 +965,13 @@
 			],
 			"bohaterowie": [
 				{
-					"nazwa": "Grupa Dowódcza",
+					"nazwa": "Command Group",
 					"punkty": "15",
-					"typ": "Grupa Dowódcza",
+					"typ": "Command Group",
 					"minimal_unit_size": 1,
 					"maximum_unit_size": 1,
 					"_zasady_specjalne": [
-						"Patrz dział Bohaterowie - Grupa Dowódcza."
+						"Patrz dział Bohaterowie - Command Group."
 					]
 				},
 				{
@@ -1201,13 +1214,13 @@
 			],
 			"bohaterowie": [
 				{
-					"nazwa": "Grupa Dowódcza",
+					"nazwa": "Command Group",
 					"punkty": "15",
-					"typ": "Grupa Dowódcza",
+					"typ": "Command Group",
 					"minimal_unit_size": 1,
 					"maximum_unit_size": 1,
 					"_zasady_specjalne": [
-						"Patrz dział Bohaterowie - Grupa Dowódcza."
+						"Patrz dział Bohaterowie - Command Group."
 					]
 				},
 				{
@@ -1496,9 +1509,9 @@
       ],
       "bohaterowie": [
         {
-          "nazwa": "Grupa Dowódcza",
+          "nazwa": "Command Group",
           "punkty": "15",
-          "typ": "Grupa Dowódcza",
+          "typ": "Command Group",
           "minimal_unit_size": 1,
           "maximum_unit_size": 1,
           "_zasady_specjalne": [

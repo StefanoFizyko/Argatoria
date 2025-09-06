@@ -1,32 +1,38 @@
 "use client";
+
+// Import React hooks and Next.js router
 import {useEffect, useState, useMemo, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import unitsData from "./data/units2.json";
-import SpellsData from "./data/spells.json";
-import ItemsData from "./data/magic_items.json"; // regular items (already present in your file)
-import ArtifactsData from "./data/artifacts.json";
-import BannersData from "./data/magical_banners.json";
+
+// Import data files for units, spells, items, artifacts, banners, and translations
+import unitsDataPL from "./data/units2.json";
+import unitsDataEN from "./data/units2_en.json";
+import SpellsDataPL from "./data/spells.json";
+import SpellsDataEN from "./data/spells_en.json";
+import ItemsDataPL from "./data/magic_items.json";
+import ItemsDataEN from "./data/magic_items_en.json";
+import ArtifactsDataPL from "./data/artifacts.json";
+import ArtifactsDataEN from "./data/artifacts_en.json";
+import BannersDataPL from "./data/magical_banners.json";
+import BannersDataEN from "./data/magical_banners_en.json";
 import { Oddzial, OddzialCard } from "./Oddzialcard";
 import { FrakcjeList } from "./FrakcjeList";
 import { SelectedUnitsList } from "./selectedUnitsList";
 import pl from "./data/pl.json";
 import en from "./data/en.json";
 
-// Add type for translation objects to allow string indexing
+// Type for translation objects
 type TranslationStrings = {
   [key: string]: string;
 };
 
-// Removed duplicate 'translations' declaration
-
+// Import game rules and limits
 import {
   getMinPodstawowe,
   getMaxRzadkie,
   getMaxUnikalne,
   getGrupaDowodczaLimits,
   getCzempionLimits,
-  // ENFORCE: 1 mag per every full 500 points
-  getMagLimit,
   MIN_BOHATEROWIE_TOTAL,
   MAX_GENERAŁ,
   MAX_ARTIFACTS_PER_GENERAŁ,
@@ -34,6 +40,7 @@ import {
   areBannersAllowed,
 } from "./limits";
 
+// Type for selected unit
 type SelectedUnit = {
   oddzial: Oddzial;
   count: number;
@@ -53,7 +60,7 @@ type SelectedUnit = {
   Banners?: { nazwa: string; koszt: number }[];
 };
 
-// Define a type for the frakcje object
+// Type for faction data
 type FrakcjeData = {
   [key: string]: {
     special_rule?: string | string[];
@@ -67,18 +74,26 @@ type FrakcjeData = {
   };
 };
 
+// Translation object for both languages
 const translations = { pl, en };
 
 export default function Home() {
+  // State for current step in the UI
   const [step, setStep] = useState<"setup" | "frakcja" | "oddzialy">("setup");
+  // State for selected faction
   const [selectedFrakcja, setSelectedFrakcja] = useState<string | null>(null);
+  // State for selected units in the army
   const [selectedUnits, setSelectedUnits] = useState<SelectedUnit[]>([]);
+  // State for total game points
   const [gamePoints, setGamePoints] = useState<number>(800);
+  // State for showing/hiding army rules
   const [showArmyRules, setShowArmyRules] = useState(false);
+  // State for language selection
   const [lang, setLang] = useState<"pl" | "en">("pl");
+  // Next.js router for navigation
   const router = useRouter();
 
-  // Translation function
+  // Translation function using current language
   const t = useCallback(
     (key: string, params?: Record<string, string | number>) => {
       let str = (translations[lang] as TranslationStrings)[key] || key;
@@ -92,6 +107,7 @@ export default function Home() {
     [lang]
   );
 
+  // Load saved state from localStorage on mount
   useEffect(() => {
     const savedUnits = localStorage.getItem("selectedUnits");
     const savedFrakcja = localStorage.getItem("selectedFrakcja");
@@ -103,27 +119,41 @@ export default function Home() {
     if (savedLang === "en" || savedLang === "pl") setLang(savedLang);
   }, []);
 
+  // Save selected units to localStorage when changed
   useEffect(() => {
     localStorage.setItem("selectedUnits", JSON.stringify(selectedUnits));
   }, [selectedUnits]);
 
+  // Save selected faction to localStorage when changed
   useEffect(() => {
     if (selectedFrakcja) localStorage.setItem("selectedFrakcja", selectedFrakcja);
   }, [selectedFrakcja]);
 
+  // Save current step to localStorage when changed
   useEffect(() => {
     localStorage.setItem("step", step);
   }, [step]);
 
+  // Save language to localStorage when changed
   useEffect(() => {
     localStorage.setItem("lang", lang);
   }, [lang]);
 
-  const frakcjeNames = useMemo(() => Object.keys(unitsData.frakcje ?? {}), []);
+  // Select correct data files based on language
+  const unitsData = lang === "pl" ? unitsDataPL : unitsDataEN;
+  const SpellsData = lang === "pl" ? SpellsDataPL : SpellsDataEN;
+  const ItemsData = lang === "pl" ? ItemsDataPL : ItemsDataEN;
+  const ArtifactsData = lang === "pl" ? ArtifactsDataPL : ArtifactsDataEN;
+  const BannersData = lang === "pl" ? BannersDataPL : BannersDataEN;
+
+  // Memoized list of faction names
+  const frakcjeNames = useMemo(() => Object.keys(unitsData.frakcje ?? {}), [unitsData, lang]);
+  // Memoized data for selected faction
   const selectedFrakcjaData = useMemo(
     () => selectedFrakcja ? ((unitsData.frakcje as unknown) as FrakcjeData)[selectedFrakcja] : null,
-    [selectedFrakcja]
+    [selectedFrakcja, unitsData, lang]
   );
+  // Memoized lists of units by type for selected faction
   const podstawoweOddzialy = useMemo(
     () => selectedFrakcjaData?.["oddziały podstawowe"] ?? [],
     [selectedFrakcjaData]
@@ -145,16 +175,16 @@ export default function Home() {
     [selectedFrakcjaData]
   );
 
-  const allSpells = useMemo(() => SpellsData.Spells, []);
-  const allItems = useMemo(() => ItemsData.Items, []);
-  const allArtifacts = useMemo(
-    () => ArtifactsData?.Artifacts ?? [],
-    []
-  );
-  const allBanners = useMemo(() => BannersData.Banners, []);
+  // Memoized lists of spells, items, artifacts, banners
+  const allSpells = useMemo(() => SpellsData.Spells, [SpellsData, lang]);
+  const allItems = useMemo(() => ItemsData.Items, [ItemsData, lang]);
+  const allArtifacts = useMemo(() => ArtifactsData?.Artifacts ?? [], [ArtifactsData, lang]);
+  const allBanners = useMemo(() => BannersData.Banners, [BannersData, lang]);
 
+  // Handler for moving to faction selection step
   const handleSetupNext = () => setStep("frakcja");
 
+  // Handler for selecting a faction
   const handleFrakcjaClick = (frakcja: string) => {
     setSelectedFrakcja(frakcja);
     setStep("oddzialy");
@@ -163,13 +193,15 @@ export default function Home() {
     );
   };
 
+  // Handler for going back to faction selection
   const handleBack = () => {
     setStep("frakcja");
     setSelectedFrakcja(null);
     setSelectedUnits([]);
   };
 
-  const handleAddPodstawowy = useCallback((oddzial: Oddzial) => {
+  // Handler for adding a basic unit
+  const handleAddPodstawowy = (oddzial: Oddzial) => {
     const minSize = Number(oddzial.minimal_unit_size) || 1;
     setSelectedUnits((prev) => [
       ...prev,
@@ -180,8 +212,9 @@ export default function Home() {
         type: "podstawowy",
       },
     ]);
-  }, []);
+  };
 
+  // Handler for adding an elite unit (with limit check)
   const handleAddElitarny = useCallback(
     (oddzial: Oddzial) => {
       const podstawoweCount = selectedUnits.filter(
@@ -205,6 +238,7 @@ export default function Home() {
     [selectedUnits]
   );
 
+  // Handler for adding a rare unit (with limit check)
   const handleAddRzadki = useCallback(
     (oddzial: Oddzial) => {
       const rzadkieCount = selectedUnits.filter((u) => u.type === "rzadki").length;
@@ -224,6 +258,7 @@ export default function Home() {
     [selectedUnits, gamePoints]
   );
 
+  // Handler for adding a unique unit (with limit check)
   const handleAddUnikalny = useCallback(
     (oddzial: Oddzial) => {
       const unikalneCount = selectedUnits.filter((u) => u.type === "unikalny").length;
@@ -243,6 +278,7 @@ export default function Home() {
     [selectedUnits, gamePoints]
   );
 
+  // Handler for adding a hero unit (detects subtype)
   const handleAddBohater = useCallback((oddzial: Oddzial) => {
     const minSize = Number(oddzial.minimal_unit_size) || 1;
     let subtype = "model";
@@ -267,7 +303,7 @@ export default function Home() {
     ]);
   }, []);
 
-  // Spell handling
+  // Handler for adding a spell to a unit (with limits)
   const handleAddSpells = (
     unitId: string,
     spell: { nazwa: string; koszt: number}
@@ -292,6 +328,7 @@ export default function Home() {
     );
   };
 
+  // Handler for removing a spell from a unit
   const handleRemoveSpell = (unitId: string, spellName: string) => {
     setSelectedUnits((prev) =>
       prev.map((u) =>
@@ -305,7 +342,7 @@ export default function Home() {
     );
   };
 
-  // Magic Items handling
+  // Handler for adding a magic item to a unit (with limits)
   const handleAddItem = (
     unitId: string,
     item: { nazwa: string; koszt: number }
@@ -330,6 +367,7 @@ export default function Home() {
     );
   };
 
+  // Handler for removing a magic item from a unit
   const handleRemoveItem = (unitId: string, itemName: string) => {
     setSelectedUnits((prev) =>
       prev.map((u) =>
@@ -343,7 +381,7 @@ export default function Home() {
     );
   };
 
-  // Artifacts and banners
+  // Handler for adding an artifact to a general unit (with limits)
   const handleAddArtifact = (
     unitId: string,
     artifact: { nazwa: string; koszt: number }
@@ -366,6 +404,7 @@ export default function Home() {
     );
   };
 
+  // Handler for removing an artifact from a unit
   const handleRemoveArtifact = (unitId: string, artifactName: string) => {
     setSelectedUnits((prev) =>
       prev.map((u) =>
@@ -379,6 +418,7 @@ export default function Home() {
     );
   };
 
+  // Handler for adding a banner to a command group unit (with limits)
   const handleAddBanner = (
     unitId: string,
     banner: { nazwa: string; koszt: number }
@@ -406,6 +446,7 @@ export default function Home() {
     );
   };
 
+  // Handler for removing a banner from a unit
   const handleRemoveBanner = (unitId: string, bannerName: string) => {
     setSelectedUnits((prev) =>
       prev.map((u) =>
@@ -419,10 +460,12 @@ export default function Home() {
     );
   };
 
+  // Count total banners in command group units
   const grupaDowodczaBannersCount = selectedUnits
     .filter((u) => u.type === "bohater_grupa")
     .reduce((sum, u) => sum + ((u.Banners || []).length), 0);
 
+  // Permission functions for items, artifacts, banners
   function canTakeItems(unit: SelectedUnit) {
     return unit.type === "bohater_mag";
   }
@@ -433,6 +476,7 @@ export default function Home() {
     return unit.type === "bohater_grupa";
   }
 
+  // Calculate limits and counts for units
   const minPodstawowe = getMinPodstawowe(gamePoints);
   const maxRzadkie = getMaxRzadkie(gamePoints);
   const maxUnikalne = getMaxUnikalne(gamePoints);
@@ -440,12 +484,23 @@ export default function Home() {
   const [minCzempion, maxCzempion] = getCzempionLimits(gamePoints);
   const maxMag = Math.floor(gamePoints / 500);
 
-  const podstawoweCount = selectedUnits.filter(u => u.type === "podstawowy").length;
-  const elitarneCount = selectedUnits.filter(u => u.type === "elitarny").length;
-  const rzadkieCount = selectedUnits.filter(u => u.type === "rzadki").length;
-  const unikalneCount = selectedUnits.filter(u => u.type === "unikalny").length;
+  // Memoized counts of units by type
+  const unitCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    selectedUnits.forEach(u => {
+      counts[u.type] = (counts[u.type] || 0) + 1;
+    });
+    return counts;
+  }, [selectedUnits]);
+
+  // Individual counts for each unit type
+  const podstawoweCount = unitCounts["podstawowy"] || 0;
+  const elitarneCount = unitCounts["elitarny"] || 0;
+  const rzadkieCount = unitCounts["rzadki"] || 0;
+  const unikalneCount = unitCounts["unikalny"] || 0;
   const maxElitarne = podstawoweCount;
 
+  // Filter hero units and count subtypes
   const bohaterowieUnits = selectedUnits.filter(u => u.type.startsWith("bohater"));
   const generałCount = bohaterowieUnits.filter(u => u.oddzial.typ?.toLowerCase().includes("generał")).length;
   const grupaDowodczaCount = bohaterowieUnits.filter(u => u.oddzial.typ?.toLowerCase().includes("grupa")).length;
@@ -453,12 +508,14 @@ export default function Home() {
   const magCount = bohaterowieUnits.filter(u => u.type === "bohater_mag").length;
   const bohaterowieTotal = bohaterowieUnits.length;
 
+  // Count artifacts and banners for generals and command groups
   const generałUnits = bohaterowieUnits.filter(u => u.oddzial.typ?.toLowerCase().includes("generał"));
   const generałArtifacts = generałUnits.reduce((sum, u) => sum + (u.Artifacts?.length || 0), 0);
 
   const grupaDowodczaUnits = bohaterowieUnits.filter(u => u.oddzial.typ?.toLowerCase().includes("grupa"));
   const grupaDowodczaBanners = grupaDowodczaUnits.reduce((sum, u) => sum + (u.Banners?.length || 0), 0);
 
+  // Check if hero selection is valid according to game rules
   const bohaterowieValid =
     generałCount <= MAX_GENERAŁ &&
     grupaDowodczaCount >= minGrupa &&
@@ -468,6 +525,7 @@ export default function Home() {
     magCount <= maxMag &&
     bohaterowieTotal >= MIN_BOHATEROWIE_TOTAL;
 
+  // Calculate total points for the army
   const totalPoints = selectedUnits.reduce(
     (sum, unit) =>
       sum +
@@ -479,6 +537,7 @@ export default function Home() {
     0
   );
 
+  // Check if army can start the game (all requirements met)
   const canStartGame =
     podstawoweCount >= minPodstawowe &&
     elitarneCount >= 2 &&
@@ -488,9 +547,12 @@ export default function Home() {
     totalPoints <= gamePoints &&
     bohaterowieValid;
 
+  // Check if general can take more artifacts
   const canGenerałTakeItem = generałArtifacts < MAX_ARTIFACTS_PER_GENERAŁ;
+  // Check if command group can take more banners
   const canGrupaTakeBanner = areBannersAllowed(gamePoints) && grupaDowodczaBanners < MAX_BANNERS_TOTAL;
 
+  // Handler for increasing unit count
   const handleIncreaseUnit = (id: string) => {
     setSelectedUnits((prev) =>
       prev.map((u) => {
@@ -502,6 +564,7 @@ export default function Home() {
     );
   };
 
+  // Handler for decreasing unit count
   const handleDecreaseUnit = (id: string) => {
     setSelectedUnits((prev) =>
       prev.map((u) => {
@@ -513,10 +576,12 @@ export default function Home() {
     );
   };
 
+  // Handler for removing a unit from the army
   const handleRemoveUnit = (id: string) => {
     setSelectedUnits((prev) => prev.filter((u) => u.id !== id));
   };
 
+  // Handler for exporting the army (saves to localStorage and navigates to export page)
   const handleExportArmy = () => {
     const exportData = {
       selectedUnits,
@@ -529,13 +594,15 @@ export default function Home() {
     router.push("/export");
   };
 
+  // Main render: two columns, left for setup/selection, right for army summary and export
   return (
     <div className="flex flex-row gap-8 w-full min-h-screen p-4 bg-white text-gray-900">
-      {/* Left column */}
+      {/* Left column: setup, faction selection, unit selection */}
       <div
         className="flex flex-col gap-4 items-start"
         style={{ width: "50%" }}
       >
+        {/* Setup step: choose language and game points */}
         {step === "setup" && (
           <div>
             {/* Language switch button */}
@@ -576,6 +643,7 @@ export default function Home() {
           </div>
         )}
 
+        {/* Faction selection step */}
         {step === "frakcja" && (
           <>
             <FrakcjeList
@@ -588,6 +656,7 @@ export default function Home() {
           </>
         )}
 
+        {/* Unit selection step */}
         {step === "oddzialy" && selectedFrakcjaData && (
           <>
             <h2 className="font-bold text-lg mb-2 text-gray-900">
@@ -628,6 +697,7 @@ export default function Home() {
               </div>
             )}
 
+            {/* Basic units selection */}
             <h3 className="font-semibold mt-1 mb-1 text-gray-900">
               {t("basicUnits")} ({t("minimumRequiredUnits", { min: minPodstawowe })}):
             </h3>
@@ -637,9 +707,12 @@ export default function Home() {
                 oddzial={oddzial}
                 bg="bg-gray-100"
                 onAdd={() => handleAddPodstawowy(oddzial)}
+                t={t}
+                lang={lang}
               />
             ))}
 
+            {/* Elite units selection */}
             <h3 className="font-semibold mt-4 mb-1 text-gray-900">
               {t("eliteUnits")} ({t("minimumEliteUnits", { max: maxElitarne })}):
             </h3>
@@ -654,9 +727,12 @@ export default function Home() {
                     : undefined
                 }
                 addDisabled={elitarneCount >= maxElitarne}
+                t={t}
+                lang={lang}
               />
             ))}
 
+            {/* Rare units selection */}
             <h3 className="font-semibold mt-4 mb-1 text-gray-900">
               {t("rareUnits")} ({t("maxRareUnits", { max: maxRzadkie })}):
             </h3>
@@ -671,9 +747,12 @@ export default function Home() {
                     : undefined
                 }
                 addDisabled={rzadkieCount >= maxRzadkie}
+                t={t}
+                lang={lang}
               />
             ))}
 
+            {/* Unique units selection */}
             <h3 className="font-semibold mt-4 mb-1 text-gray-900">
               {t("uniqueUnits")} ({t("maxUniqueUnits", { max: maxUnikalne })}):
             </h3>
@@ -688,9 +767,12 @@ export default function Home() {
                     : undefined
                 }
                 addDisabled={unikalneCount >= maxUnikalne}
+                t={t}
+                lang={lang}
               />
             ))}
 
+            {/* Heroes selection */}
             <h3 className="font-semibold mt-4 mb-1 text-gray-900">
               {t("heroes")}:
             </h3>
@@ -705,6 +787,7 @@ export default function Home() {
                 minHeroes: MIN_BOHATEROWIE_TOTAL,
               })}
             </div>
+            {/* Show hero selection errors if any */}
             {!bohaterowieValid && (
               <div className="text-red-600 text-xs mb-2">
                 {t("heroesLimitViolation")}
@@ -713,10 +796,9 @@ export default function Home() {
                 {grupaDowodczaCount > maxGrupa && " " + t("maximumGroupAllowed", { maxGroup: maxGrupa })}
                 {czempionCount < minCzempion && " " + t("minimumChampionRequired", { minChampion: minCzempion })}
                 {czempionCount > maxCzempion && " " + t("maximumChampionAllowed", { maxChampion: maxCzempion })}
-                {magCount > maxMag && " " + t("maximumMageAllowed", { maxMage: maxMag })}
-                {bohaterowieTotal < MIN_BOHATEROWIE_TOTAL && " " + t("minimumHeroesRequired", { minHeroes: MIN_BOHATEROWIE_TOTAL })}
               </div>
             )}
+            {/* Render hero cards */}
             {bohaterowie.map((oddzial: Oddzial, idx: number) => {
               let addDisabled = false;
               if (oddzial.typ?.toLowerCase().includes("generał") && generałCount >= MAX_GENERAŁ) addDisabled = true;
@@ -737,9 +819,12 @@ export default function Home() {
                   bg="bg-green-100"
                   onAdd={() => handleAddBohater(oddzial)}
                   addDisabled={addDisabled}
+                  t={t}
+                  lang={lang}
                 />
               );
             })}
+            {/* Back button to faction selection */}
             <button
               className="mt-4 bg-gray-100 text-black border border-black font-mono font-semibold px-2 py-1 rounded transition hover:bg-gray-200 w-auto text-sm"
               onClick={handleBack}
@@ -750,7 +835,7 @@ export default function Home() {
         )}
       </div>
 
-      {/* Right column */}
+      {/* Right column: army summary and export */}
       <div className="flex flex-col w-1/2">
         <div className="mb-2 flex items-center gap-10">
           <label className="font-semibold text-gray-900">
@@ -766,6 +851,7 @@ export default function Home() {
             />
           </label>
         </div>
+        {/* Selected units list and controls */}
         <SelectedUnitsList
           selectedUnits={selectedUnits}
           gamePoints={gamePoints}
@@ -789,6 +875,7 @@ export default function Home() {
           canTakeItems={canTakeItems}
           lang={lang}
         />
+        {/* Export army button */}
         <button
           className="bg-purple-600 text-white px-4 py-2 rounded font-bold mt-4"
           onClick={handleExportArmy}
@@ -797,7 +884,7 @@ export default function Home() {
           {t("exportArmy")}
         </button>
       </div>
-    </div>
-  );
-}
+      </div>
+    );
+  }
 

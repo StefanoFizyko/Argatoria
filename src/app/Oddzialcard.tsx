@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 export type Oddzial = {
   nazwa: string;
@@ -20,16 +20,20 @@ export type Oddzial = {
   max_items_value: string;
 };
 
-export function OddzialCard({
+export const OddzialCard = React.memo(function OddzialCard({
   oddzial,
   bg,
   onAdd,
   addDisabled,
+  t,
+  lang,
 }: {
   oddzial: Oddzial;
   bg: string;
   onAdd?: () => void;
   addDisabled?: boolean;
+  t: (key: string, params?: Record<string, string | number>) => string;
+  lang: "pl" | "en";
 }) {
   const [showDetails, setShowDetails] = useState(false);
 
@@ -45,15 +49,18 @@ export function OddzialCard({
         {/* Name and points in one row */}
         <div className="flex flex-row items-center justify-between mb-2">
           <span className="font-bold">{oddzial.nazwa}</span>
-          <span className="font-semibold text-blue-700">Punkty: {oddzial.punkty}</span>
+          <span className="font-semibold text-blue-700">
+            {t("unitPoints")}: {oddzial.punkty}
+          </span>
         </div>
 
         {/* Expand/collapse button */}
         <button
           className="text-sm text-blue-600 mb-2"
           onClick={() => setShowDetails(v => !v)}
+          aria-expanded={showDetails}
         >
-          {showDetails ? "Ukryj szczegóły" : "Pokaż szczegóły"}
+          {showDetails ? t("hideDetails") : t("showDetails")}
         </button>
 
         {/* Details shown only when expanded */}
@@ -75,14 +82,17 @@ export function OddzialCard({
             {/* Min/max info only if present */}
             {(oddzial.minimal_unit_size || oddzial.maximum_unit_size) && (
               <div className="text-xs text-gray-500 mb-2">
-                Min: {oddzial.minimal_unit_size ?? "-"} / Max: {oddzial.maximum_unit_size ?? "-"}
+                {t("minMax", {
+                  min: oddzial.minimal_unit_size ?? "-",
+                  max: oddzial.maximum_unit_size ?? "-",
+                })}
               </div>
             )}
 
             {/* Special rules */}
             {zasady.length > 0 && (
               <div>
-                <span className="font-semibold">Zasady specjalne:</span>
+                <span className="font-semibold">{t("specialRulesUnit")}</span>
                 <ul className="list-disc ml-6">
                   {zasady.map((zasada, i) => (
                     <li key={i}>{zasada}</li>
@@ -102,7 +112,7 @@ export function OddzialCard({
               addDisabled ? "opacity-50 cursor-not-allowed" : ""
             }`}
             onClick={onAdd}
-            title="Dodaj jednostkę"
+            title={t("addUnit")}
             disabled={addDisabled}
           >
             +
@@ -114,4 +124,4 @@ export function OddzialCard({
       </div>
     </div>
   );
-}
+});

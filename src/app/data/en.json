@@ -67,6 +67,7 @@
   "armySummary": "Army summary",
   "faction": "Faction",
   "pointsSummary": "Points summary",
+  "pointsSummaryFull": "Total points: {totalPoints} / {gamePoints}",
   "armySpecialRules": "Army special rules",
   "chosenUnits": "Chosen units",
 
@@ -91,5 +92,6 @@
   "magicItemsHeader": "Magic items:",
   "addItemOption": "Add item...",
   "itemLimitReachedMsg": "Item limit ({maxItems}) reached.",
-  "itemPointsLimitReachedMsg": "Item points limit ({maxItemPoints}) reached."
+  "itemPointsLimitReachedMsg": "Item points limit ({maxItemPoints}) reached.",
+  "stats": "Stats"
 }
